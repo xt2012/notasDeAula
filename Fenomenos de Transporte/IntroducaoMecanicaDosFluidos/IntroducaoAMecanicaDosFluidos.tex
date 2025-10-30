@@ -7,13 +7,11 @@
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textit{#1}}}}
 \graphicspath{{image/}}
 \begin{document}
-
 \title{Introdução à mecanica dos fluidos \\ Fenômenos de transporte}
 
 \author{Henrique Bernardes}
 %\date{\vspace{-5ex}}
-\maketitle
-\thispagestyle{empty}
+\maketitle \thispagestyle{empty}
 
 \section{Início}
 Começamos com a ideia de um pequeno elemento estacionário de fluido em uma certa posição arbitrária de massa do fluido como visto em \ref{fig:forcasuperficieecampo}. Também, sabemos que existem dois tipos de forças que atuam sobre esse elemento:
@@ -427,6 +425,135 @@ Substituindo de volta na fórmula:
      p_1-p_2&=\gamma L\left(sin\theta + \frac{d^2}{D^2}\right)\\
      L&=\frac{p_1-p_2}{\gamma\left(sin\theta + \frac{d^2}{D^2}\right)}\\
 \end{align*}
+
+
+\subsection{Força Hidrostática Sobre uma Superfície Plana}
+Quando uma superfície está submersa em um fluido, são desenvolvidas forças na superfície devidas ao fluido. Note que, nos fluidos em repouso, a força deve ser \textbf{perpendicular} à superfície. 
+\subsection{Superfície Plana Horizontal}
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{forcaResultanteSuperficieLivreReta.png}
+    \caption{Pressão no fundo de um tanque aberto horizontal}
+    \label{fig:forcaResultanteSuperficieLivreReta}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{forcaResultanteSuperficiePlanaParedes.png}
+    \caption{Pressão no fundo de um tanque aberto horizontal}
+    \label{fig:forcaResultanteSuperficieLivreRetaParedes}
+  \end{minipage}
+\end{figure}
+
+Para o caso mais simples de uma superfície plana horizontal, como a superfície inferior do tanque aberto da figura \ref{fig:forcaResultanteSuperficieLivreReta}, fica claro que a magnitude da força resultante é simplesmente $F_R=pA$, uma vez que pressão p é uniforme ao longo de toda a superfície, sendo $p= \gamma h$. Uma vez que a pressão é constante e uniformemente distribuida ao longo da superfície inferior, a força resultante atua através do centróide da figura.\footnote{Vale mencionar que a pressão \textbf{NÃO} é uniforme ao longo das paredes verticais do tanque, como na figura \ref{fig:forcaResultanteSuperficieLivreRetaParedes}}
+\newpage
+\subsection{Superfície Plana Inclinada}
+Para o caso mais geral no qual se tem uma superfície plana inclinada submersa, como na figura \ref{fig:forcaResultanteSuperficieInclinada} a determinação da força resultante que atua sobre a superfície é mais complexa, dado que a pressão \textbf{não} será uniforme ao longo da superfície.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{forcaResultanteSuperficieInclinada.png}
+  \caption{Força resultante em uma superfície plana inclinada submersa}
+  \label{fig:forcaResultanteSuperficieInclinada}
+\end{figure}
+
+Admitimos, inicialmente, que a superfície é aberta à atmosfera. Consideramos o plano no qual a superfície em repouso intercepta a superfície livre em 0, formando um ângulo $\theta$. O sistema de coordenadas x-y é definido de modo que 0 seja a origem e y seja orientado ao longo da superfície. A área pode ter um formado arbitrário. Desejamos determinar a direção, o sentido, a localização e a magnitude da força resultante atuando em um lado dessa área devida ao líquido em contato com a área.
+
+Em uma profundidade fornecida h, a força que atua em dA é $dF = \gamma h dA$ e, como esperado, é perpendicular à superfície. Assim sendo, a intensidade da força resultante pode ser encontrada somando-se essas forças diferenciais em toda a superfície, ou seja:
+
+\begin{equation}
+  F_R = \int_{A}^{ } \gamma h\, dA = \int_{A}^{ } \gamma y sin\theta\, dA
+  \label{eq:integrandoForcaSuperficieInclinada}
+\end{equation}
+tendo em vista que:
+\begin{align}
+  sin\theta &= \frac{h}{y}\\
+  h &= y sin\theta \\
+  \label{eq:formulaProfundidadeAreaSuperficieInclinada}
+\end{align}
+Para y e $\theta$ constantes, temos:
+\begin{equation}
+  F_R=\gamma sin \theta \int_{A}^{ } y\, dA
+  \label{eq:forcaResultanteSuperficieInclinada2}
+\end{equation}
+
+A integral da equação \ref{eq:forcaResultanteSuperficieInclinada2} é o momento estático(ou primeiro momento) da área em relação ao eixo x e pode ser representado como:
+\begin{align}
+  \int_{A}^{ } y\, dA = y_cA
+\end{align}
+onde $y_c$ é a coordenada y do centróide medida a partir do eixo x, que passa por 0.
+Podemos, então, reescrever a equação \ref{eq:forcaResultanteSuperficieInclinada2} como:
+\begin{align*}
+   F_R=\gamma sin\theta y_c A
+\end{align*}
+Sabendo, também, que $h_c$(altura do eixo x até o centróide da superfície) é dado por:
+\begin{align*}
+  sin\theta &=\frac{h_c}{y_c} \\
+  h_c&=y_c sin\theta 
+\end{align*}
+logo, a equação se torna:
+\begin{equation}
+  F_R=\gamma A h_c
+  \label{eq:forcaResultanteSuperficieInclinada3}
+\end{equation}
+Devemos observar que a magnitude da força é independente do ângulo $\theta$ e depende apenas do peso específico do fluido, da área total da superfície plana e da profundidade do centróide da área abaixo da superfície. A equação \ref{eq:forcaResultanteSuperficieInclinada3} indica que a magnitude da força resultante é igual à pressão no centróide da área multiplicada área total.
+
+Embora a nossa intuição possa sugerir que a força resultante deveria passar pelo centróide da área, não é o que de fato ocorre. O ponto através da qual a força resultante atua é chamado de \textbf{centro de pressão} e sua posição em relação ao centróide da área está indicado na figura \ref{fig:centroDePressoaInclinado}.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.3\linewidth]{centroDePressoaInclinado.png}
+  \caption{Localização da força resultante e representação da não uniformidade da pressão para uma superfície inclinada em um fluido}
+  \label{fig:centroDePressoaInclinado}
+\end{figure}
+
+A coordenada $y_R$ da força resultante pode ser determinada pela soma dos momentos em torno do eixo x. Ou seja, o momento da força resultante deve ser igual ao momento da força de pressão distribuida:
+
+\begin{equation}
+  F_Ry_R = \int_{A}^{ } y\, dF = \int_{A}^{ } y\gamma h\, dA =\int_{A}^{ } \gamma sen\theta y^2\, dA 
+  \label{eq:EqMomentoForcaResultanteIgualMomentoForcaPressao}
+\end{equation}
+onde $dF=pdA =\gamma h dA$ junto com a fórmula \ref{eq:formulaProfundidadeAreaSuperficieInclinada}, 
+
+É possível demonstrar(?!!?!???!!!!) que essa relação de momentos leva à seguinte equação que fornece a distância $y_r-y_c$ entre o centro de pressão e o centróide:
+\begin{equation}
+  y_r - y_c = \frac{I_{xc}}{y_cA} 
+  \label{eq:equacaoDistanciaCentroPressaoECentroide}
+\end{equation}
+onde a grandeza $I_{xc}$ denominada momento de inércia(ou segundo momento) da área plana A em relação a um eixo que passa através do centróide A é uma propriedade geométrica da área A, como por exemplo:
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{propriedadesGeometricaRetangulo.png}
+    \caption{Propriedades geométricas de um retângulo}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{align*}
+      A&=b*a\\
+      I_{xc}&=\frac{1}{12}ba^3
+    \end{align*}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{propriedadesGeometricaCirculo.png}
+    \caption{Propriedades geométricas de um circulo}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{align*}
+      A&=\pi R^2\\
+      I_{xc}&=\frac{\pi R^4}{4}
+    \end{align*}
+  \end{minipage}
+\end{figure}
+Finalmente, uma vez que $\frac{I_{xc}}{y_cA}>0$, a equação \ref{eq:equacaoDistanciaCentroPressaoECentroide} mostra que o centro de pressão está \textbf{SEMPRE} abaixo do centróide. 
+
 \iffalse
 Given a sequence of $n$ points in the plane $(X_1, Y_1), \ldots, (X_n, Y_n)$
 we seek the linear equation $y = a + bx$ that approximates the points
