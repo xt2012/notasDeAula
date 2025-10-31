@@ -6,9 +6,9 @@
 \usepackage[normalem]{ulem}
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textit{#1}}}}
 \graphicspath{{image/}}
+\newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
 \begin{document}
 \title{Introdução à mecanica dos fluidos \\ Fenômenos de transporte}
-
 \author{Henrique Bernardes}
 %\date{\vspace{-5ex}}
 \maketitle \thispagestyle{empty}
@@ -553,64 +553,285 @@ onde a grandeza $I_{xc}$ denominada momento de inércia(ou segundo momento) da �
   \end{minipage}
 \end{figure}
 Finalmente, uma vez que $\frac{I_{xc}}{y_cA}>0$, a equação \ref{eq:equacaoDistanciaCentroPressaoECentroide} mostra que o centro de pressão está \textbf{SEMPRE} abaixo do centróide. 
-
-\iffalse
-Given a sequence of $n$ points in the plane $(X_1, Y_1), \ldots, (X_n, Y_n)$
-we seek the linear equation $y = a + bx$ that approximates the points
-as closely as possible, in the sense that the sum of the squared residuals
-$E = \sum_{i=1}^n (Y_i - a - bX_i)^2$ is minimized.
-
-We assume that not all of the points lie on a single horizontal or vertical
-line. In that case, we can apply a \emph{transformation} to the points
-so that $\sum x_i = \sum y_i = 0$ and $\sum x_i^2 = \sum y_i^2 = 1$.
-The transformation is defined by
-$$
-x_i = \frac{X_i - \overline{X}}{\sqrt{\sum (X_i - \overline{X})^2}}\quad\text{and}\quad
-y_i = \frac{Y_i - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}.
-$$
-
-This transformation is linear, so it maps lines to lines.
-If we transform a line fitted to the data,
-the sum of squared residuals is multiplied by a positive constant factor.
-Therefore, the transformation preserves the line of best fit.
-
-
-Let $r = \sum x_i y_i$. Then
+\newpage
+\section{Fluidos em movimento}
+As leis básicas que serão aplicadas aqui são:
+\begin{enumerate}
+  \item A conservação de massa;
+  \item A segunda lei de Newton;
+  \item O princípio da quantidade de movimento angular;
+  \item A primeira e segunda leis de termodinâmica.
+\end{enumerate}
+Para converter estas equações em fórmulas equivalentes para um volume de controle, vamos expressar cada uma delas como uma equação de taxa.
+\subsection{Conservação de Massa}
+Para um sistema, sendo por definição uma quantidade de matéria fixa \textit{M}, temos que $M=cte$. Contudo, como já dito, queremos expressar cada lei como uma equação de taxa, logo:
+\begin{equation}
+  \left.\frac{dM}{dT}\right)_{sistema} = 0
+  \label{eq:conservacaoDeMassa}
+\end{equation}
+em que:
+\begin{equation}
+  M_{sistema}=\int_{M(sistema)}^{ } \, dm = \int_{\stkout{V}(sistema)}^{ } \rho\, d\stkout{V}
+  \label{eq:massaFormula}
+\end{equation}
+\subsection{Segunda Lei de Newton}
+Para um sistema com movimento relativo a um sistema de referência inercial, a segunda lei de Newton estabelece que a soma de todas as forças externas agindo sobre o sitema é igual à taxa de variação com o tempo da quantidade de movimento linear do sistema:
+\begin{equation}
+  \vec{F}=\left.\frac{d\vec{P}}{dt}\right)_{sistema}
+  \label{eq:segundaLeiNewton}
+\end{equation}
+onde a quantidade de movimento linear do sistema ($\vec{P}$) é dado por:
+\begin{equation}
+  \vec{P}_{sistema}=\int_{M(sistema)}^{ } \vec{V}\, dm = \int_{\stkout{V}_{sistema}}^{ } \vec{V} \rho\, d\stkout{V} 
+  \label{eq:movimentoLinearFormula}
+\end{equation}
+\subsection{O princípio da quantidade de movimento angular}
+O princípio da quantidade de movimento angular para um sistema estabelece que a taxa de variação da quantidade de movimento angular é igual à soma de todos os torques atuando sobre o sistema:
+\begin{equation}
+  \vec{T}=\left.\frac{d\vec{H}}{dt}\right)_{sistema}
+  \label{eq:TorqueIgualVariacaoMovimentoAngular}
+\end{equation}
+onde a quantidade de movimento angular do sistema é dada por:
+\begin{equation}
+  \vec{H}_{sistema}=\int_{M(sistema)}^{ } \vec{r} \times \vec{V}\, dm = \int_{\stkout{V}(sistema)}^{ } \vec{r} \times \vec{V} \rho \, d\stkout{V}
+  \label{eq:qntMovimentoAngular}
+\end{equation}
+O torque pode ser produzido por forças de superfície e de campo(neste caso, a gravidade) e também por eixos que cruzam a fronteira do sistema:
+\begin{equation}
+  \vec{T}=\vec{r} \times \vec{F}_s + \int_{M(sistema)}^{ } \vec{r} \times \vec{g}\, dm + \vec{T}_{eixo} 
+  \label{eq:torque}
+\end{equation}
+\subsection{A primeira lei da termodinâmica}
+A primeira lei da termodinâmica enuncia a conservação de energia para um sistema:
 \begin{align*}
-E &= \sum (y_i - a - bx_i)^2 \\
-&= \sum (y_i^2 + a^2 + b^2 x_i^2 - 2ay_i - 2bx_iy_i + 2abx_i) \\
-&= \sum y_i^2 + \sum a^2 + \sum b^2 x_i^2 
- - \sum 2ay_i - \sum 2bx_iy_i + \sum 2abx_i \\
-&= 1 + na^2 + b^2 - 2br \\
-&= (1-r^2) + na^2 + (b - r)^2\ .
+  dE=\delta Q - \delta W
+\end{align*}
+Reescrevendo em forma de taxa:
+\begin{equation}
+  \dot{Q}-\dot{W}=\left.\frac{dE}{dt}\right)_{sistema}
+  \label{eq:1aLeiTermodinamicaTaxa}
+\end{equation}
+onde a energia total do sistema é dada por:
+\begin{equation}
+  E_{sistema}=\int_{M(sistema)}^{ } e\, dm = \int_{\stkout{V}(sistema)}^{ } e\rho\, d\stkout{V}
+  \label{eq:energiaTotalSistema}
+\end{equation}
+onde $e$ é dado por
+\begin{align*}
+  e = u+\frac{V^2}{2}+gz
+\end{align*}
+onde cada termo diz respeito à energia interna específica, energia cinética e energia potencial, respectivamente. Adicionalmente, na equação \ref{eq:1aLeiTermodinamicaTaxa}, o termo $\dot{Q}$ é positivo quando o sistema recebe calor; já o termo $\dot{W}$ é positivo quando o sistema realiza trabalho sobre sua vizinhança.
+\subsection{A segunda lei da termodinâmica}
+Se uma quantidade de calor $\delta Q$ for transferida para um sistema a temperatura T, a segunda lei da termodinâmica estabelece que a variação de entropia dS do sistema satisfaz a relação:
+\begin{align*}
+   dS\ge\frac{\delta Q}{T}
+\end{align*}
+em forma de taxa:
+\begin{equation}
+  \left.\frac{dS}{dT}\right)_{sistema}\ge \frac{1}{T}\dot{Q}
+  \label{eq:entropiaTaxa}
+\end{equation}
+onde a entropia total do sistema é dada por:
+\begin{equation}
+  S_{sistema}=\int_{M(sistema)}^{ } s\, dm=\int_{\stkout{V}(sistema)}^{ } s \rho \, d\stkout{V}
+  \label{eq:entropiaTotalSistema}
+\end{equation}
+Agora, com a cinco leis básicas expressas em forma de taxa para um sistema, podemos desenvolver uma expressão geral para converter uma equação de taxa para um sistema em uma equação equivalente para um volume de controle. Em vez de converter as equações individualmente(equações \ref{eq:conservacaoDeMassa} \ref{eq:segundaLeiNewton} \ref{eq:TorqueIgualVariacaoMovimentoAngular} \ref{eq:1aLeiTermodinamicaTaxa} e \ref{eq:entropiaTaxa} ), representamos todas as variáveis pelo símbolo $N$. Assim sendo, $N$ representa a quantidade de massa, ou quantidade de movimento, ou quantidade de movimento angular, ou energia, ou entropia de um sistema. Correspondendo a esta propriedade extensiva $N$, precisamos também da propriedade intensiva $\eta$. Ou seja:
+\begin{equation}
+  N_{sistema}=\int_{M(sistema)}^{ } \eta \, dm = \int_{\stkout{V}(sistema)}^{ } \eta \rho\, d\stkout{V}
+  \label{eq:equacaoGeralPropExtensivaPropIntensiva}
+\end{equation}
+Comparando esta equação com as equações \ref{eq:massaFormula} \ref{eq:movimentoLinearFormula} \ref{eq:qntMovimentoAngular} \ref{eq:energiaTotalSistema} e \ref{eq:entropiaTotalSistema}, chegamos as seguintes relações:
+\begin{align*}
+  \ref{eq:massaFormula}) &N=M, \eta=1\\
+  \ref{eq:movimentoLinearFormula}) &N=\vec{P}, \eta=\vec{V}\\
+  \ref{eq:qntMovimentoAngular}) &N=\vec{H}, \eta=\vec{r} \times \vec{V}\\
+  \ref{eq:energiaTotalSistema}) &N=E, \eta=e \\
+  \ref{eq:entropiaTotalSistema}) &N=S, \eta=s \\
+\end{align*}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{regioesFluido.png}
+  \caption{Configuração para sistema e volume de controle}
+  \label{fig:sistemaEVolControle}
+\end{figure}
+Agora, por meio da análise da figura \ref{fig:sistemaEVolControle} é possível obter a relação fundamental entre a taxa de variação de qualquer propriedade extensiva arbitrária N de um sistema e as variações dessa propriedade associadas a um volume de controle:
+\begin{equation}
+  \left.\frac{dN}{dt}\right)_{sistema}=\frac{\partial}{\partial t}\int_{VC}^{ } \eta \rho \, d\stkout{V} + \int_{SC}^{ } \eta \rho \vec{V} \cdot \, d\vec{A}
+  \label{eq:RelacaoFundamentalReynolds}
+\end{equation}
+onde $VC$ é o volume de controle e $SC$ é o sistema de controle. O sistema é a matéria que está passando através do volume de controle escolhido no instante escolhido. Se escolhermos, por exemplo, um volume de controle retangular contendo uma asa de uma aeronave, o sistema seria a massa de ar que está instantaneamente contida entre o retângulo e a asa. Na fórmula \ref{eq:RelacaoFundamentalReynolds}, precisamos entender o significado de cada termo:
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{align*}
+      \left.\frac{dN}{dt}\right)_{sistema}
+    \end{align*}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    é a taxa de variação da propriedade extensiva do sistema N. Por exemplo, se $N=\vec{P}$, obtemos a taxa de variação da quantidade de movimento.
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{align*}
+      \frac{\partial}{\partial t} \int_{VC}^{ } \eta \rho \, d\stkout{V}
+    \end{align*}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    é a taxa de variação da quantidade da propriedade N dentro do volume de controle. O termo $\int_{VC}^{ } \eta \rho \, d\stkout{V}$  calcula o valor instantâneo de N dentro do volume de controle. Portante, se $N=\vec{P}$, então $\eta = \vec{V}$ e logo $\int_{VC}^{ } \stkout{V} \rho \, d\stkout{V}$ calcula a quantidade de movimento no volume de controle.
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{align*}
+      \int_{SC}^{ } \eta \rho \vec{V}\ \cdot d\vec{A}
+    \end{align*}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    É a taxa na qual a propriedade N está saindo da superficie do volume de controle. O termo calcula o fluxo líquido de N para fora do volume de controle. Então, se $N=\vec{P}$ então $\eta=\vec{V}$ logo $\int_{VC}^{ } \vec{V} \rho \vec{V} \cdot\, d\vec{A}$ calcula o fluxo líquido de quantidade de movimento para fora do volume de controle.
+  \end{minipage}
+\end{figure}
+
+\subsection{Conservação da massa}
+O primeira princípio físico para o qual aplicamos a relação entre as fórmulas de sistema e de volume de controle é o princípio de conservação de massa - a massa do sistema permanece constante:
+\begin{align*}
+  \left.\frac{dM}{dt}\right)_{sistema}=0
+\end{align*}
+onde, novamente
+\begin{align*}
+  M_{sistema}=\int_{M(sistema)}^{ } \, dm = \int_{\stkout{V}(sistema)}^{ } \rho\, d\stkout{V}
 \end{align*}
 
-The sum is minimized when $a = 0$ and $b = r$, so the line of best fit is
-$y = rx$. What a simple equation!
-Unfortunately, the equation is a bit messier when expressed in terms of the
-original variables.
+As formulações de sistema e de volume de controle são:
 
+\begin{equation}
+  \left.\frac{dM}{dt}\right)_{sistema}=\underbrace{\frac{\partial}{\partial t}\int_{VC}^{ } \rho \, d\stkout{V}}_{\text{1}} + \underbrace{\int_{SC}^{ } \rho \vec{V} \cdot \, d\vec{A}}_{2} = 0
+  \label{eq:conservacaoDeMassaFormulacao}
+\end{equation}
+onde o termo 1 representa a taxa de variação da massa dentro do volume de controle; o termo 2 representa a taxa líquida de fluxo de massa para fora através da superfície de controle.
+ Ou seja, a soma da taxa de variação da massa dentro do volume de controle com a taxa líquida de fluxo de massa através da superfície de controle é zero. Essa equação é também chamada de equação da continuidade. Ou seja, a taxa de aumento de massa no volume de controle é decorrente do fluxo líquido de entrada de massa:
 \begin{align*}
-\frac{y - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}
-&= \left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sqrt{\sum (X_i - \overline{X})^2 \sum (Y_i - \overline{Y})^2}}
-   \right)
-   \left(
-     \frac{x - \overline{X}}
-          {\sqrt{\sum (X_i - \overline{X})^2}}
-   \right)\\
-y - \overline{Y} &=
-\left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sum (X_i - \overline{X})^2}
-   \right)
-   (x - \overline{X})\ .
+  \frac{\partial}{\partial t}\int_{VC}^{ } \rho \, d\stkout{V} = -\int_{SC}^{ } \rho \vec{V} \cdot \, d\vec{A}
 \end{align*}
 
-Note that $r$ is the Pearson correlation coefficient of the sample.
-This shows that the correlation coefficient can be interpreted geometrically
-as the slope of the line of best fit when the $x$ and $y$ values are standardized.
-\fi
- 
+Em casos especiais, é possível simplificar a equação \ref{eq:conservacaoDeMassaFormulacao}. Primeiramente, consideramos o caso de um fluido incompressível, onde a massa específica permanece constante. Quando $\rho = cte$ ele não é uma função do espaço e nem do tempo, logo, para fluidos incompressíveis, podemos escrever a equação \ref{eq:conservacaoDeMassaFormulacao} como:
+\begin{align*}
+  \rho \frac{\partial}{\partial t}\int_{VC}^{ } \, d\stkout{V} + \rho \int_{SC}^{ } \vec{V} \cdot \, d\vec{A}=0
+\end{align*}
+A integral sobre todo o volume de controle é simplesmente o volume total do volume de controle. Assim, dividindo por $\rho$:
+\begin{align*}
+ \frac{\partial \stkout V}{\partial t} +  \int_{SC}^{ } \vec{V} \cdot \, d\vec{A}=0
+\end{align*}
+Para um volume de controle não deformável, de forma e tamanho fixos, $\stkout{V} = cte$. Assim, a conservação de massa para um escoamento incompressível através de um volume de controle fixo torna-se:
+\begin{equation}
+  \int_{SC}^{ } \vec{V}\cdot\, d\vec{A}=0
+  \label{eq:conservacaoMassaEscoamentoIncompressivel}
+\end{equation}
+Um caso especial útil é quando a velocidade é (ou pode ser aproximada como) uniforme em cada entrada e saída. Aqui, a equação \ref{eq:conservacaoMassaEscoamentoIncompressivel} simplifica-se para:
+\begin{equation}
+  \sum\nolimits_{SC} \vec{V} \cdot \vec{A}=0
+  \label{eq:conservacaoMassaEscoamentoIncompressivelVelocidadeUniforme}
+\end{equation}
+
+É interessante notar que em nenhum momento impusemos a restrição de escoamento de regime permanente, somente de escoamento incompressível, assim, a equação \ref{eq:conservacaoMassaEscoamentoIncompressivel} pode ser usada tanto para um escoamento de fluido incompressível em regime transiente ou permanente. As dimensões do integrando são $L^3/t$. A integral sobre uma seção da superfície de controle é chamada de vazão volumétrica(ou taxa de fluxo de volume, ou vazão de volume). Assim sendo, para um escoamento incompressível, a vazão volumétrica para dentro de um volume de controle deve ser igual à vazão volumétrica para fora do volume de controle. Dessa forma, a vazão volumétrica $Q$, através de uma seção de uma superfície de controle de área A é dada por:
+\begin{equation}
+  Q=\int_{A}^{ } \vec{V}\ \cdot\, d\vec{A}
+  \label{eq:vazaoVolumetrica}
+\end{equation}
+O módulo da velocidade média $\vec{V}$ em uma seção é definido por:
+\begin{equation}
+    \vec{V}=\frac{Q}{A}=\frac{1}{A}\int_{A}^{ } \vec{V} \cdot\, d\vec{A}
+  \label{eq:moduloVelocidadeMedia}
+\end{equation}
+Considerando o caso de escoamento permanente, compressível através de um volume de controle fixo. Como o escoamento é permanente, no máximo $\rho=\rho(x,y,z)$. Por definição, em regime permanente, nenhuma propriedade do fluido varia com o tempo. Assim sendo, o termo 1 da equação \ref{eq:conservacaoDeMassaFormulacao} deve ser zero; então, para escoamento permanente, o enunciado da conservação de massa reduz-se a:
+\begin{equation}
+    \int_{SC}^{ } \rho \vec{V} \cdot \, d\vec{A}=0
+  \label{eq:conservacaoMassaEscoamentoCompressivelRegimePermanente}
+\end{equation}
+Um caso especial útil é quando a velocidade é (ou pode ser aproximada como) uniforme em cada entrada e saída. Aqui, a equação \ref{eq:conservacaoMassaEscoamentoCompressivelRegimePermanente} simplifica-se para:
+\begin{equation}
+    \sum\nolimits_{SC} \rho \vec{V} \cdot \vec{A}=0
+  \label{eq:conservacaoMassaEscoamentoCompressivelRegimePermanenteVelocidadeUniforme}
+\end{equation}
+Assim sendo, para escoamente em regime permanente, a vazão mássica para dentro do volume de controle deve ser igual à vazão mássica para fora do volume de controle.
+\subsection{Equação da quantidade de movimento para um volume de controle inercial}
+Agora, obtida a formulação da conservação de massa para um volume de controle, queremos obter uma formulação para a segunda lei de Newton em um volume de controle. Utilizaremos o mesmo procedimento adotado. Devemos tomar algum cuidado aqui, pois as coordenadas do volume de controle (em relação às quais medimos todas as velocidades) são inerciais; ou seja, as coordenadas do volume de controle \textit{xyz} estão em repouso ou movendo-se a velocidade constante em relação a um conjunto de coordenadas "absolutas" \textit{XYZ}. Começamos com a formulação para um sistema e, com a equação \ref{eq:RelacaoFundamentalReynolds}, conseguimos chegar à formulação para volume de controle.
+Lembrando que, para um sistema movendo-se em relação a um sistema de coordenadas inerciais, a segunda lei de Newton é dada por como:
+\begin{align*}
+  \vec{F}=\left.\frac{d\vec{P}}{dt}\right)_{sistema}
+\end{align*}
+onde a quantidade de movimento linear do sistema $\vec{P}$ é dada por:
+\begin{align*}
+  \vec{P}_{sistema}=\int_{M(sistema)}^{ } \vec{V}\, dm = \int_{\stkout{V}(sistema)}^{ } \vec{V} \rho\, d\stkout{V}
+\end{align*}
+e a força resultante $\vec{F}$ inclui todas as forças de campo e de superfície atuando sobre o sistema,
+\begin{align*}
+  \vec{F}=\vec{F}_S + \vec{F}_B
+\end{align*}
+Para deduzir a formulação para volume de controle da segunda lei de Newton, fazemos
+\begin{align*}
+  N=\vec{P} \quad e \quad \eta = \vec{V}
+\end{align*}
+Da equação \ref{eq:RelacaoFundamentalReynolds}, obtemos:
+\begin{equation}
+  \left.\frac{d\vec{P}}{dt}\right)_{sistema}=\frac{\partial}{\partial t}\int_{VC}^{ } \vec{V} \rho \, d\stkout{V} + \int_{SC}^{ } \vec{V} \rho \vec{V}\, d\vec{A}
+  \label{eq:quantidadeMovimentoVolumeDeControle}
+\end{equation}
+Da equação \ref{eq:segundaLeiNewton}:
+\begin{align}
+  \left.\frac{d\vec{P}}{dt}\right)_{sistema}=\vec{F}_{\text{sobre o sistema}}
+  \label{eq:VariacaoQuantMovimentoLinearIgualForcaSobreSistema}
+\end{align}
+Devido ao fato de que na dedução da equação \ref{eq:RelacaoFundamentalReynolds} o sistema e o volume de controle coincidirem em $t_0$, segue que:
+\begin{align*}
+  \left.\vec{F}\right)_{\text{sobre o sistema}}=\left.\vec{F}\right)_{\text{sobre o volume de controle}}
+\end{align*}
+Dessa forma, as equações \ref{eq:quantidadeMovimentoVolumeDeControle} e \ref{eq:VariacaoQuantMovimentoLinearIgualForcaSobreSistema} podem ser combinadas para dar a formulação da segunda lei de Newton para um volume de controle não acelerado:
+\begin{equation}
+  \vec{F}=\vec{F}_S+\vec{F}_B=\frac{\partial}{\partial t}\int_{VC}^{ } \vec{V} \rho \, d\stkout{V} + \int_{SC}^{ } \vec{V} \rho \vec{V} \cdot \, d\vec{A}
+  \label{eq:SegundaLeiDeNewtonVolumeDeControle}
+\end{equation}
+Para os casos quando temos escoamento uniforme em cada entrada e saída, podemos usar:
+\begin{equation}
+  \vec{F}=\vec{F}_S+\vec{F}_B=\frac{\partial}{\partial t}\int_{VC}^{ } \vec{V} \rho \, d\stkout{V} + \sum\nolimits_{SC} \vec{V}\rho\vec{V}\cdot\vec{A}
+  \label{eq:SegundaLeiDeNewtonVolumeDeControleEscoamentoUniforme}
+\end{equation}
+
+As equações \ref{eq:SegundaLeiDeNewtonVolumeDeControle} e \ref{eq:SegundaLeiDeNewtonVolumeDeControleEscoamentoUniforme} estabelecem que a força total devido às forças de superfície e de campo atuando sobre o volume de controle leva à taxa de variação da quantidade de movimento dentro do volume decontrole(a integral de volume) e/ou à taxa líquida na qual a quantidade de movimento está saindo do volume de controle através da superfície de controle.
+Para aplicar ambas as equações, devemos sempre esolher cuidadosamente um volume de controle e sua superfície de controle de fomra que possamos avaliar a integral de volume e a integral de superfície(ou o somatório); cada entrada e saída deve ser rotulada, indicando como as forças externas agem. Em mecânica dos fluidos, a força de campo é normalmente a gravidade:
+\begin{align*}
+  \vec{F}_B=\int_{VC}^{ } \rho \vec{g}\, d\stkout{V}=\vec{W}_{VC}=M\vec{g}
+\end{align*}
+onde $\vec{g}$ é a aceleração da gravidade e $\vec{W}_{VC}$ é o peso instantâneo de todo o volume de controle. Em muitas aplicações, a força de superfície é decorrente da pressão:
+\begin{align*}
+  \vec{F}_S = \int_{A}^{ } -\rho \, d\vec{A}
+\end{align*}
+onde o sinal negativo é para assegurar que estamos calculando as forças de pressão atuando sobre a superfície de controle(mesmo nos pontos sobre a superfície que possuem um escoamento para fora, a força de pressão atua sobre o volume de controle).
+
+Devemos ter cuidado também ao avaliar o segundo termo das duas equações, $\int_{SC}^{ } \vec{V} \rho \vec{V} \cdot \, d\vec{A}$ e $\sum\nolimits_{SC} \vec{V}\rho\vec{V}\cdot\vec{A}$. A velocidade $\vec{V}$ deve ser medida com relação às coordenadas do volume de controle \textit{xyz}, com sinais apropriados para as componentes vetoriaus u, v e w. Também, vale lembrar que o produto escalar será positivo para escoamentos para fora e negativo para escoamentos para dentro, como mostra a figura \ref{fig:produtoEscalarVDA}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{produtoEscalarVDA.png}
+  \caption{Sinais do produto escalar $\vec{V} \cdot d\vec{A}$}
+  \label{fig:produtoEscalarVDA}
+\end{figure}
+A equação da quantidade de movimento é uma equação vetorial e, geralmente, escreveremos as três componentes escalares, como medidas nas coordenadas \textit{xyz} do volume de controle:
+\begin{align}
+  F_x&=F_S_x+F_B_x=\frac{\partial}{\partial t}\int_{VC}^{ } u\rho\, d\stkout{V} + \int_{SC}^{ } u\rho\vec{V}\cdot\, d\vec{A}\\
+  F_y&=F_S_y+F_B_y=\frac{\partial}{\partial t}\int_{VC}^{ } v\rho\, d\stkout{V} + \int_{SC}^{ } v\rho\vec{V}\cdot\, d\vec{A}\\
+  F_z&=F_S_z+F_B_z=\frac{\partial}{\partial t}\int_{VC}^{ } w\rho\, d\stkout{V} + \int_{SC}^{ } w\rho\vec{V}\cdot\, d\vec{A}
+\end{align}
+ou para escoamento uniforme:
+\begin{align}
+  F_x&=F_S_x+F_B_x=\frac{\partial}{\partial t}\int_{VC}^{ } u\rho\, d\stkout{V} + \sum\nolimits_{SC}^{ } u\rho\vec{V}\cdot \vec{A}\\
+  F_y&=F_S_y+F_B_y=\frac{\partial}{\partial t}\int_{VC}^{ } v\rho\, d\stkout{V} + \sum\nolimits_{SC}^{ } v\rho\vec{V}\cdot \vec{A}\\
+  F_z&=F_S_z+F_B_z=\frac{\partial}{\partial t}\int_{VC}^{ } w\rho\, d\stkout{V} + \sum\nolimits_{SC}^{ } w\rho\vec{V}\cdot \vec{A}
+\end{align}
+Notar que, conforme foi mostrado para a equação da conservação da massa \ref{eq:conservacaoMassaEscoamentoCompressivelRegimePermanente}, para escoamento em regime permanente, o primeiro termo após a igualdade é zero pois não há variação das propriedades do fluido.
 \end{document}
