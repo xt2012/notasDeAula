@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{amsmath, fullpage}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textit{#1}}}}
+%\graphicspath{{image/}}
+\newcommand{\stkout}[1]{\ifmmode\text{\sout{\ensuremath{#1}}}\else\sout{#1}\fi}
+
+\begin{document}
+
+
+\newcounter{boxlblcounter}  
+\newcommand{\makeboxlabel}[1]{\fbox{#1.}\hfill}% \hfill fills the label box
+\newenvironment{boxlabel}
+  {\begin{list}
+    {\arabic{boxlblcounter}}
+    {\usecounter{boxlblcounter}
+     \setlength{\labelwidth}{3em}
+     \setlength{\labelsep}{0em}
+     \setlength{\itemsep}{2pt}
+     \setlength{\leftmargin}{1.5cm}
+     \setlength{\rightmargin}{2cm}
+     \setlength{\itemindent}{0em} 
+     \let\makelabel=\makeboxlabel
+    }
+  }
+{\end{list}}
+
+\newenvironment{boxedd}
+    {
+     \begin{center}
+    \begin{tabular}{|p{1\textwidth}|}
+    \hline
+    }
+    { 
+    \\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+
+
+
+\title{Prova 2 - Química Experimental}
+\author{Henrique Bernardes}
+%\date{\vspace{-5ex}}
+\maketitle
+\thispagestyle{empty}
+\section{Experimento 7 - Equilíbrio Químico}
+Primeiramente, todas as reaçõpes químicas tendem a alcançar um equilíbrio entre reagentes e produtos. Neste estado de equilíbrio, a razão entre a concentração de produtos e reagentes é constante, ou seja, a velocidade da reação direta é igual(mas em sentido oposto)  à velocidade da reação reversa.
+Assim sendo, o equilíbrio é dinâmico, não se observa modificações macroscópicas do sistema.
+Também, a relação da concentração no equilíbrio químico independe da forma como ele foi alcançado.
+
+O estado de equilíbrio pode ser afetado por variações na temperatura, na concentração dos reagentes e na pressão.
+
+Princípio de Le Chatelier: "Quando um sistema em equilíbrio é submetido a uma ação, o equilíbrio se desloca de forma a contrabalancear à ação."
+
+No experimento 7, observamos as reações que ocorrem em um sistema cromato-dicromato devido à facil observação do deslocamento do equilíbrio por conta da diferença de cores entre o cromato(amarelo) e o dicromato(laranja)\footnote{Em um sistema, mesmo predominando a cor amarela por conta do deslocamento na direção do íon cromato, ainda podem existir íons dicromato em menor quantidade e vice-versa.}.
+
+Além disso, observamos os efeitos da temperatura, da adição de íons de hidrogênio na posição de equilíbrio e o efeito da presença do bário($Ba^{2+}$), pois os íons cromato($2CrO_4^{2-}$) e dicromato($Cr_2O_7^{2-}$) reagem com o bário para formar os sais $BaCrO_4$(insolúvel) e $BaCr_2O_7$(solúvel).
+\begin{equation}
+  Cr_2O_7^{2-}+H_2O\rightleftharpoons 2CrO_4^{2-}+2H^{+}
+\end{equation}
+Percebemos, da equação, duas situações:
+\begin{enumerate}
+  \item Acrescimo de $\overbrace{base}^{\text{$OH^-$}}$ no dicromato desloca o equilíbrio para a direita, formando cromato e tornando a solução amarelada;
+  \item Acrescimo de íons $H^+$ em cromato desloca o equilíbrio para a esquerda, formando o dicromato e tornando a solução laranjada.
+\end{enumerate}
+\subsection{Formação de precipitados}
+Como mencionado no ínicio, caso haja reação entre o bário e o cromato ou dicromato, haverá a formação de precipitados, como sugerem as equações:
+\begin{align}
+  Ba^{2+}+2CrO_4^{2-}&\rightarrow BaCrO_4(s)\\
+  Ba^{2+}+Cr_2O_7^{2-}&\rightarrow BaCr_2O_7(s)
+\end{align}
+
+\section{Eletroquímica}
+Quando um átomo, íon ou molécula recebe elétrons, diz-se que ocorreu uma \textbf{redução} e a espécie que perdeu elétrons \textbf{oxidou}. As reações eletroquímicas são também referidas como reações \textbf{redox}.
+\begin{itemize}
+  \item Formação de ferrugem na superfície do aço
+  \item Coloração verde desenvolvida em peças de cobre e expostas às intempéries, as pilhas, bateriais utilizadas em carros, telefones celulares e laptops.
+\end{itemize}
+Todos os mencionados são baseados em processos eletroquímicos. Esses eventos ocorrem naturalmente e, portanto, são espontâneos.
+
+Toda pilha é baseada em uma reação eletroquímica espontânea. A transferência espontânea de elétrons envolvida nessas reações pode ser transformada em um fluxo contínuo de elétrons em um condutor metálico e a corrente resultante utilizada para realizar trabalho.
+\begin{boxedd}
+  As reações redox ocorrem devido à diferença de potencial que surge entre diferentes materiais.
+\end{boxedd}
+A medida desta diferença de potencial elétrico fornece informações a respeito da espontaneidade de uma reação eletroquímica, das concentrações das respécies químicas durante a reação e da razão entre reagentes e produtos após a reação ter atingido o equilíbrio.
+\begin{equation}
+  O_{2} +H_2O + 4e^- \rightarrow 4OH^-   \quad\quad\quad\quad E_{red}=+0.40V
+\end{equation} 
+Qualquer metal que possua uma semireação com valor de $E_{red}$ menor que 0.40V sofrerá um processo de oxidação quando exposto ao oxigênio e à humiade. Uma forma de contornar esse problema e por meio da \textbf{galvanização} do metal.
+
+A galvanização consiste em recobrir o material com outro metal que possua um potencial de oxidação maior. Assim, cria-se uma camada protetora que diminui o contato do material original com o ambiente, atuando também como metal de sacrifício, pois a oxidação ocorrerá primeiro no metal da camada protetora devido ao maior potencial de oxidação.
+
+\subsection{Semireações}
+\subsubsection{Pilha Zn/Cu}
+Em uma pilha de Zn/Cu, temos o cobre sendo reduzido e o zinco sendo oxidado, ou seja:
+\begin{center}
+  Redução(Cobre) - Cátodo (+)
+\end{center}
+\begin{equation}
+  Cu^{2+}+2e^- \rightarrow Cu  \quad\quad\quad\quad E_{red}=+0.34V
+\end{equation}
+\begin{center}
+  Oxidação(Zinco) - Ânodo(-)
+\end{center}
+\begin{equation}
+  Zn \rightarrow Zn^{2+}+2e^- \quad\quad\quad\quad E_{red}=-0.76V
+\end{equation}
+O ânodo é o metal com menor potencial de redução.
+Assim:
+\begin{align*}
+  Zn+Cu^{2+}\rightarrow Zn^{2+}+Cu \quad\quad\quad E_{cel}&=E_{catodo}-E_{anodo}\\
+&=+0.34V-(-0.76V)\\
+&=1.10V
+\end{align*}
+\subsubsection{Pilha Zn/H}
+Em uma pilha de Zn/H, o zinco novamente oxida e o hidrogênio reduz:
+\begin{center}
+  Redução(Hidrogênio) - Cátodo (+)
+\end{center}
+\begin{equation}
+  2H^{+}+2e^-\rightarrow H_2  \quad\quad\quad\quad E_{red}=+0V
+\end{equation}
+\begin{center}
+  Oxidação(Zinco) - Ânodo(-)
+\end{center}
+\begin{equation}
+  Zn \rightarrow Zn^{2+}+2e^- \quad\quad\quad\quad E_{red}=-0.76V
+\end{equation}
+Assim:
+\begin{align*}
+  Zn+2H^{+}\rightarrow Zn^{2+}+H_2 \quad\quad\quad E_{cel}&=E_{catodo}-E_{anodo}\\
+&=+0V-(-0.76V)\\
+&=0.76V
+\end{align*}
+
+Na galvanização, os polos invertem, ou seja, agora o ânodo é positivo(+) e o cátodo é (-). Aqui, tinhamos o cobre como ânodo(+), sofrendo a oxidação, e a chave como cátodo(-), sofrendo a redução:
+\begin{align*}
+  &Cu_{(s)} \rightarrow Cu^{2+}_{(aq)} + 2e^- \quad\quad\quad\quad (cobre)\\
+  &Cu^{2+}_{(aq)}+2e^-\rightarrow Cu_{(S)} \quad\quad\quad\quad (chave)
+\end{align*}
+
+\section{Calorimetria}
+A energia não é destruida, ela é conservada. Durante um processo, ela é transformada de um tipo para outro. Aqui, a entropia mede o grau de desorganização das partículas em um sistema. Um processo somente ocorre se a entropia total do sistema aumenta, ou seja, o grau de desordem aumenta.
+\begin{align*}
+  &\Delta U=Q-W\\
+  &dH=\delta Q
+\end{align*}
+Ou seja, tendo a equação para o cálculo da variação de entalpia, pode-se calcular o calor trocado durante o processo:
+\begin{itemize}
+  \item $\Delta H_r < 0$ são reações exotérmicas, emitem calor;
+  \item $\Delta H_r > 0$ são reações endotérmicas, absorver calor.
+\end{itemize}
+\subsection{Propriedades}
+Capacidade calorífica é a razão entre o calor fornecido e o aumento de temperatura observado:
+\begin{equation} O calorímetro é formado por um recipiente interno(béquer) revestido por um copo de isopor com finalidade de eliminar a propagação de calor para o ambiente externo.
+ C=\frac{q}{\Delta T} 
+\end{equation}
+ Calor específico mede o calor necessário para que haja uma variação unitária de temperatura para uma massa unitária de uma certa substância:
+\begin{equation}
+ c=\frac{q}{m\Delta T} 
+\end{equation}
+A transferência de energia na forma de calor é medida com um calorímetro. Um calorímetro é um sistema fechado no qual o calor transferido é monitorado pela variação de temperatura que ele provoca, utilizando a capacidade calorífica do calorímetro($C_{cal}$) para converter a mudança de temperatura em calor produzido. Por meio do método das mistúras, obtem-se a capacidade calorífica do calorímetro: aquecendo uma quantidade de água a uma temperatura maior que a da água contida no calorímetro e as misturando, fazendo a água com temperatura maior ceder à água com temperatura menor e ao calorímetro. O calorímetro é formado por um recipiente interno(béquer) revestido por um copo de isopor com finalidade de eliminar a propagação de calor para o ambiente externo.
+Reação de neutralização é exotérmica.
+No experimento 7, determinamos a capacidade calorífica do calorímetro. Em seguida, determinamos a entalpia de dissolução do cloreto de amônio em água e a entalpia de neutralização da reação ácido base entre HCl e NaOH.
+
+\section{Experimento 8}
+No experimento 8, estudamos a reação de Landolt, ou a reação do "relógio de iodo", que se trata da reação entre os íons bissulfito e iodato em meio ácido, formando iodo. A reação é representada por meio de três equações, cada uma com velocidades diferentes.
+Inicialmente, temos o bissulfito reagindo com o iodato de forma lenta em meio ácido formando bissulfato e iodeto:
+\begin{equation}
+  3HSO_{3(aq)}^-  + IO_{3(aq)}^- \rightarrow 3HSO_{4(aq)}^- + I_{(aq)}^-
+\end{equation}
+a medida que o iodeto vai sendo formado, ele reage rapidamente com iodato, formando iodo:
+\begin{equation}
+  5I^-_{(aq)} + IO^-_{3(aq)}+6H^+_{(aq)}\rightarrow 3I_2+3H_2O
+\end{equation}
+Enquanto houver bissulfito na solução, ele irá reagir com o iodo, formando iodeto novamente em uma etapa muito rápida:
+\begin{equation}
+  3HSO^-_{3(aq)}+I_2+H_2O \rightarrow 2I^-_{(aq)}+HSO^-_{(aq)}+3H^+_{(aq)}
+\end{equation}
+O tempo tempo transcorrido a partir do momento da mistura dos reagentes (bissulfito e iodato) permite avaliar como a reação de Landolt pode variar em diferentes condições experimentais. Um concentração mínima de iodo poderá ser detectada se houver amido presente no meio, pois ele forma um complexo de intensa coloração azul com o iodo.
+\end{document}

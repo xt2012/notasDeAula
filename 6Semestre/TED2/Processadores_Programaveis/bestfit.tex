@@ -184,65 +184,6 @@ Na figura \ref{fig:unidadeControleExemplo} observa-se a primeira linha se propag
 \end{minipage}
 \end{figure}
 
-\iffalse
-Given a sequence of $n$ points in the plane $(X_1, Y_1), \ldots, (X_n, Y_n)$
-we seek the linear equation $y = a + bx$ that approximates the points
-as closely as possible, in the sense that the sum of the squared residuals
-$E = \sum_{i=1}^n (Y_i - a - bX_i)^2$ is minimized.
-
-We assume that not all of the points lie on a single horizontal or vertical
-line. In that case, we can apply a \emph{transformation} to the points
-so that $\sum x_i = \sum y_i = 0$ and $\sum x_i^2 = \sum y_i^2 = 1$.
-The transformation is defined by
-$$
-x_i = \frac{X_i - \overline{X}}{\sqrt{\sum (X_i - \overline{X})^2}}\quad\text{and}\quad
-y_i = \frac{Y_i - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}.
-$$
-
-This transformation is linear, so it maps lines to lines.
-If we transform a line fitted to the data,
-the sum of squared residuals is multiplied by a positive constant factor.
-Therefore, the transformation preserves the line of best fit.
-
-
-Let $r = \sum x_i y_i$. Then
-\begin{align*}
-E &= \sum (y_i - a - bx_i)^2 \\
-&= \sum (y_i^2 + a^2 + b^2 x_i^2 - 2ay_i - 2bx_iy_i + 2abx_i) \\
-&= \sum y_i^2 + \sum a^2 + \sum b^2 x_i^2 
- - \sum 2ay_i - \sum 2bx_iy_i + \sum 2abx_i \\
-&= 1 + na^2 + b^2 - 2br \\
-&= (1-r^2) + na^2 + (b - r)^2\ .
-\end{align*}
-
-The sum is minimized when $a = 0$ and $b = r$, so the line of best fit is
-$y = rx$. What a simple equation!
-Unfortunately, the equation is a bit messier when expressed in terms of the
-original variables.
-
-\begin{align*}
-\frac{y - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}
-&= \left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sqrt{\sum (X_i - \overline{X})^2 \sum (Y_i - \overline{Y})^2}}
-   \right)
-   \left(
-     \frac{x - \overline{X}}
-          {\sqrt{\sum (X_i - \overline{X})^2}}
-   \right)\\
-y - \overline{Y} &=
-\left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sum (X_i - \overline{X})^2}
-   \right)
-   (x - \overline{X})\ .
-\end{align*}
-
-Note that $r$ is the Pearson correlation coefficient of the sample.
-This shows that the correlation coefficient can be interpreted geometrically
-as the slope of the line of best fit when the $x$ and $y$ values are standardized.
-\fi
-
 \newpage
 \section{Processador programável  de três instruções}
 Inicialmente, definimos o que é conhecido como \textbf{conjunto de instruções} do processador programável: é uma lista das instruções possíveis e a meneira de representar essas instruções na memória.
@@ -501,10 +442,360 @@ Os estados início e busca permanecem os mesmos. Em decodificação, adiciona-se
      \item No estado Subtrair, executa-se as mesmas ações do estado Somar, exceto que a ULA é configurada para subtração ao invés de adição ($s1=1 $ e ($s0=0$);
      \item No estado de Saltar se zero, configura-se o banco de registradores para que o registrador especificado por ra seja lido e seu conteúdo colocado na port ade leitura Rp. Se o valor de Rp for composto apenas de 0s, então a saída RF\_Rp\_zero irá ser 1(e 0, caso contrário). Dessa forma, deve-se tratar de duas transições partindo do estado Saltar se zero. Se $RF\_Rp\_zero=0$, ou seja, o registrador lido(presente agora na saída Rp) não contém apenas 0s, a FSM volta para o estado Busca, ou seja, não ocorre salto. Se $RF\_Rp\_zero=1$, o registrador lido é composto só de zeros, então a FSM vai para o próximo estado, Saltar, na qual realmente ocorro o salto com o sinal de load do PC sendo 1($PC\_ld=1$).
 \end{boxlabel}
+\newpage
+\section{Manipulação de bits e bytes}
+O Picoblaze realiza atividades de controle e manipulação de dados em baixo nível, realizando a manipulação de dados baseado em bytes. Para manipulação de bits, é necessário compreender as diretivas de baixo nível para controle de I/O, tais como setar, limpar e comparar flags de 1 bit.
+Devemos estabelecer a convenção utilizada:
+\begin{enumerate}
+  \item O símbulo ':' indica um endereço depois de um nome simbólico
+  \item O símbulo ';' indica um comentário
+  \item kk indica uma constante, onde k é um dígito hexadecimal
+\end{enumerate}
+O conjunto de operações de instruções do Picoblaze é orientado para a manipulação de bytes(byte-oriented). Para manipular um único bit é comum o uso de máscaras que permitar extrair, isolar e preservar os bits não relacionados e então aplicar as operações nos bits desejados.
+As operações mais utilizadas para controle e manipulação de dados são setar, limpar, inverter, extrair e comparar. As três primeiras podem ser feitas com instruções de or, and e xor, respectivamente. Para extrair um bit de um registrador usa-se a isntrução test e a máscara apropriada dependendo do bit desejado.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{testInstructionPicoBlaze.png}
+  \caption{Instrução Test PicoBlaze}
+  \label{fig:testInstructionPicoBlaze}
+\end{figure}
+\newpage
+\subsection{Exemplo 1 - Setar, limpar e inverter o segundo bit LSB do registrador s0}
+\begin{boxedd}
+\begin{lstlisting}
+constant set_mask, 02 ; mascara=0000_0010
+constant clr_mask, FD ; mascara=1111_1101
+constant tog_mask, 02 ; mascara=0000_0010
+ 
+or s0, set_mask       ; xxxx_xxxx
+                      ; 0000_0010 or
+                      ; xxxx_xx1x
+
+and s0, clr_mask      ; xxxx_xxxx
+                      ; 1111_1101 and
+                      ; xxxx_xx0x 
+
+xor s0, tog_mask      ; xxxx_xxxx 
+                      ; 0000_0010 xor 
+                      ; xxxx_xxx'x
+\end{lstlisting}
+\end{boxedd}
+\subsection{Exemplo 2 - Extrair o MSB do registrador s0 e armazenar no registrado s1.}
+\begin{boxedd}
+\begin{lstlisting}
+constant clr_mask,80 ; mascara=1000_0000
+
+load s1, 00
+test s0, clr_mask    ; xxxx_xxxx
+                     ; 1000_0000 and
+                     ; x000_0000
+jump z, done         ; pula para done se z = 1, ou seja, MSB é 0
+load s1, 01          ; MSB não é 0, portanto, s1=1          
+\end{lstlisting}
+\end{boxedd}
+\subsection{Manipulação de múltiplos bytes}
+Muitos programas precisam manipular dados com múltiplos bytes. Contudo, o microcontrolador Picoblaze é de 8 bits; precisamos, então, de um mecanismo para propagar informação entre duas instruções sucessivas.
+  Para as operações aritméticas, pode-se usar o carry e as instruções de soma e subtração com e sem carry(add, addcy, sub, subcy).
+  Para as operações de deslocamento e rotação, pode-se usar o carry e as instruções de deslocamento ou rotação à direita e à esquerda e à esquerda com ou sem carry(sl0, sla, sr0, sra, rl, rr)
+
+\subsubsection{Somando e subtraindo dois números x e y de 24 bits.}
+\begin{boxedd}
+\begin{lstlisting}
+namereg s0, x0 ; byte LS de x
+namereg s1, x1 ; byte do meio de x
+namereg s2, x2 ; byte MS de x
+;-----------------------------------------
+namereg s3, y0 ; byte LS de y
+namereg s4, y1 ; byte do meio de y
+namereg s5, y2 ; byte MS de y
+;-----------------------------------------
+add   x0, y0
+addcy x1, y1
+addcy x2, y2
+\end{lstlisting}
+\end{boxedd}
+
+
+\begin{boxedd}
+\begin{lstlisting}
+namereg s0, x0 ; byte LS de x
+namereg s1, x1 ; byte do meio de x
+namereg s2, x2 ; byte MS de x
+;-----------------------------------------
+namereg s3, y0 ; byte LS de y
+namereg s4, y1 ; byte do meio de y
+namereg s5, y2 ; byte MS de y
+;-----------------------------------------
+sub   x0, y0
+subcy x1, y1
+subcy x2, y2
+\end{lstlisting}
+\end{boxedd}
+
+\subsubsection{Incrementar uma palavra x de 24 bits que ocupa três registradores}
+\begin{boxedd}
+\begin{lstlisting}
+namereg s0, x0
+namereg s1, x1
+namereg s2, x2
+add x0, 01
+addcy x0, 00
+addcy x0, 00
+\end{lstlisting}
+\end{boxedd}
 
 \newpage
- 
+\subsubsection{Deslocar uma posição para esquerda de uma palavra de 24 bits}
+\begin{boxedd}
+\begin{lstlisting}
+namereg s0, x0
+namereg s1, x1
+namereg s2, x2
+sl0 x0 ; desloca com 0 no LSB de X, MSB de x vai para o carry
+sla x1 ; desloca à esquerda com o carry da instrução anterior
+sla x2 ; desloca à esquerda com o carry da instrução anterior
+\end{lstlisting}
+\end{boxedd}
 
+\subsubsection{Somar D[5]=D[5]+D[6]+D[7]}
+\begin{boxedd}
+\begin{lstlisting}
+FETCH s1, 05
+FETCH s2, 06
+FETCH s3, 07
+LOAD s0, 00
+ADD s0, s1
+ADD s0, s2
+ADD s0, s3
+STORE s0, 05
+;_________________________USING CONSTANT
+CONSTANT D5, 05
+CONSTANT D6, 06
+CONSTANT D7, 07
+main: FETCH s1, D5
+FETCH s2, D6
+FETCH s3, D7
+LOAD s0, 00
+ADD s0, s1
+ADD s0, s2
+ADD s0, s3
+STORE s0, D5
+\end{lstlisting}
+\end{boxedd}
+\newpage
+\subsubsection{Somar D[9]=D[0]+D[1]}
+\begin{boxedd}
+\begin{lstlisting}
+CONSTANT D9, 09
+CONSTANT D0, 00
+CONSTANT D1, 01  
+main:
+FETCH s0, D0 
+FETCH s1, D1
+ADD s0, s1
+STORE s0, D9
+\end{lstlisting}
+\end{boxedd}
 
+\section{Estruturas de controle de programa com Picoblaze}
+Linguagens de programação de alto nível como C e C++ contém diversas estruturas de controle para alterar a execução de um programa. Tipicamente, o controle de fluxod e programa é feito pelas diretivas:
+\begin{itemize}
+  \item if-then-else
+  \item case 
+  \item for-loop
+\end{itemize}
+O Picoblaze apenas oferece instruções jump condicionadas e não-condicionados. Assim sendo, as instruções jump podem ser usadas junto com instruções test e/ou compare para implementar as estruturas de controle de fluxo de alto nível.
+\newpage
+\subsection{Estutura if-then-else}
+A estrutura if(s0==s1) pode ser implementada usando \textbf{compare} e \textbf{jumpnz}
+\begin{boxedd}
+\begin{lstlisting}
+if(s0==s1){
+  /* then-branch statements */
+}else{
+  /* else-branch statements*/
+}
+\end{lstlisting}
+\end{boxedd}
+Lembrando da instrução \textbf{compare}:
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{comparePicoblaze.png}
+  \caption{Instrução compare Picoblaze e estados das flags}
+  \label{fig:comparePicoblaze}
+\end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{callInstructionConditions.png}
+  \caption{CALL Instruction Conditions}
+  \label{fig:callInstructionConditions}
+\end{figure}
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting} 
+    if(s0==s1){
+      /* then-branch statements */
+    }else{
+      /* else-branch statement*/
+    }
+    \end{lstlisting} 
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting} 
+    compare s0,s1;if compare yields 0(s0-s1==0) then Z flag is 1.
+    jump nz, else_branch;will only execute if 
+      ;code for if-then branch
+    jump if_done
+    else_branch:
+      ;code for else branch
+    if_done:
+      ;code following if-then-else statement
+    \end{lstlisting} 
+  \end{minipage}
+\end{figure}
+\subsection{Estrutura case}
+A estrutura \textbf{case} pode ser vista como múltiplos saltos de instrução. 
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting} 
+    switch(s0){
+      case value1:
+        /*case value 1 statements*/
+        break;
+    }
+      case value2:
+        /*case value 2 statements*/
+        break;
+    }
+      case value3:
+        /*case value 3 statements*/
+        break;
+    }
+      default:
+        /* default statements*/
+  }
+    \end{lstlisting} 
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting} 
+    if(s0==value1){
+      /*case value1 statements*/
+    }
+    else if(s0==value2){
+      /*case value2 statements*/
+    }
+    else if(s0==value3){
+      /*case value3 statements*/
+    }
+    else{
+      /*default statements*/
+    }
+    \end{lstlisting} 
+  \end{minipage}
+\end{figure}
+Como já sabemos implementar if-then-else, a tarefa é similar:
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting}
+        if(s0==value1){
+          /*case value1 statements*/
+        }
+        else if(s0==value2){
+          /*case value2 statements*/
+        }
+        else if(s0==value3){
+          /*case value3 statements*/
+        }
+        else{
+          /*default statements*/
+        }
+      \end{lstlisting} 
+  \end{minipage}\hfill
+  \begin{minipage}{0.40\textwidth}
+    \begin{lstlisting}
+        constant value1, ...
+        constant value2, ...
+        constant value3, ..
+
+        compare s0, value1 ;test value1
+        jump nz, case_2  ;not equal to value 1, jump to case2
+        ;code for case 1
+        ...
+        jump case_done
+
+      case_2:
+        compare s0, value2  
+        jump nz, case_3
+        ;code for case 2
+        ...
+        jump case_done
+
+      case_3:
+        compare s0, value3  
+        jump default
+        ;code for case 3
+        ...
+        jump case_done
+
+      default:
+        ;code for default case 
+        ...
+      case_done:
+        ;code following case statement
+    \end{lstlisting} 
+  \end{minipage}
+\end{figure}
+\newpage
+\subsection{Estrutura for-loop}
+A estrutura \textbf{for} executa uma sequência de código repetidamente. Esta estrutura pode ser implementada usando um contador de iterações.
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+
+    \begin{lstlisting}
+    for(i=MAX; i=0; i=i-1){
+      /*loop body statements*/
+    }
+    \end{lstlisting}
+
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \begin{lstlisting}
+  namereg s0, i     ;loop index
+  constant MAX, ... ;loop boundary
+  load i, MAX ;load loop index  
+
+loop_body:
+  ;code for loop body
+  ...
+  sub i, 01 ;decrease loop index
+  jump nz,loop_body ;done?
+
+  ;code following for loop
+  ...
+    \end{lstlisting}
+
+  \end{minipage}
+\end{figure}
+\section{Subrotinas}
+Subrotinas em linguagens de programação de alto nível são porções de um programa maior. Geralmente, implementam tarefas específicas usadas repetitivamente e permitem, assim, dividir o programa em partes menores e mais manejáveis. O Picoblaze utiliza as intruções \textbf{call} e \textbf{return} para implementar subrotinas.
+A instrução \textbf{call} salva o conteúdo atual do contador do programa e transfere a execução do programa para o endereço inicial da subrotina. 
+A subrotina termina com a instrução \textbf{return}, que recupera o valor do contador de programa e retorna a execução do programa.
+\textbf{Nota:} Durante uma chamada de função, o Picoblaze apenas armazena e restaura o conteúdo do contador de programa. Assim, não é preservado o contexto do banco de registradores nem das flags. O projetista deve sempre cuidar manualmente do bankreg e RAM de forma que o estado do sistema não seja alterado após a chamada da subrotina.
+
+A instrução \textbf{call} salva o valor do contador do programa na \textbf{pilha}, incrementa o \textbf{tos} e transfere a execução do programa para o endereço inicial da subrotina. 
+A instrução \textbf{return} recupera o valor do contador de programa e retoma a execução do programa. 
+Por termos uma pilha de 31 posições, é possível ter até 31 subrotinas aninhadas.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.35\linewidth]{subrotinaBase.png}
+  \caption{Funcionamento base da chamada e retorno de uma subrotina}
+  \label{fig:subrotinaBase}
+\end{figure}
 \end{document}
  
