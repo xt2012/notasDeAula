@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.30)  18 MAR 2026 21:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.30)  21 MAR 2026 20:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -165,7 +165,80 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count284
 \l__pdf_internal_box=\box58
-) (./templateBase.aux)
+) (./templateBase.aux
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `eq:pulsoLarguraTContinuo' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `eq:pulsoLarguraTContinuo' multiply defined.
+
+
+LaTeX Warning: Label `eq:pulsoLarguraTContinuo' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `fig:label' multiply defined.
+
+)
 \openout1 = `templateBase.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -241,25 +314,242 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 125--136
  [] 
  []
 
-[3 <./figures/aula1a/sinal2.png>] (./templateBase.aux)
+[3 <./figures/aula1a/sinal2.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 141--146
+ [] 
+ []
+
+<figures/aula1a/sinalbi.png, id=23, 558.085pt x 444.66125pt>
+File: figures/aula1a/sinalbi.png Graphic file (type png)
+<use figures/aula1a/sinalbi.png>
+Package pdftex.def Info: figures/aula1a/sinalbi.png  used on input line 152.
+(pdftex.def)             Requested size: 211.38832pt x 168.42345pt.
+<figures/aula1a/sinalTri.png, id=24, 695.59875pt x 446.66875pt>
+File: figures/aula1a/sinalTri.png Graphic file (type png)
+<use figures/aula1a/sinalTri.png>
+Package pdftex.def Info: figures/aula1a/sinalTri.png  used on input line 172.
+(pdftex.def)             Requested size: 328.82707pt x 211.1475pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./figures/aula1a/sinalbi.png>] [5 <./figures/aula1a/sinalTri.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 209--215
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 218--226
+ [] 
+ []
+
+<figures/aula1a/degrauContinua.png, id=33, 558.085pt x 419.5675pt>
+File: figures/aula1a/degrauContinua.png Graphic file (type png)
+<use figures/aula1a/degrauContinua.png>
+Package pdftex.def Info: figures/aula1a/degrauContinua.png  used on input line 230.
+(pdftex.def)             Requested size: 234.8775pt x 176.58206pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 245--252
+ [] 
+ []
+
+[6 <./figures/aula1a/degrauContinua.png>]
+<figures/aula1a/degrauDiscreta.png, id=37, 562.1pt x 422.57875pt>
+File: figures/aula1a/degrauDiscreta.png Graphic file (type png)
+<use figures/aula1a/degrauDiscreta.png>
+Package pdftex.def Info: figures/aula1a/degrauDiscreta.png  used on input line 257.
+(pdftex.def)             Requested size: 234.8775pt x 176.5727pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 278--284
+ [] 
+ []
+
+[7 <./figures/aula1a/degrauDiscreta.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 288--295
+ [] 
+ []
+
+<figures/aula1a/signumContinua.png, id=42, 560.0925pt x 418.56375pt>
+File: figures/aula1a/signumContinua.png Graphic file (type png)
+<use figures/aula1a/signumContinua.png>
+Package pdftex.def Info: figures/aula1a/signumContinua.png  used on input line 298.
+(pdftex.def)             Requested size: 234.8775pt x 175.52733pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 317--325
+ [] 
+ []
+
+<figures/aula1a/signumDiscreta.png, id=43, 561.09625pt x 422.57875pt>
+File: figures/aula1a/signumDiscreta.png Graphic file (type png)
+<use figures/aula1a/signumDiscreta.png>
+Package pdftex.def Info: figures/aula1a/signumDiscreta.png  used on input line 328.
+(pdftex.def)             Requested size: 234.8775pt x 176.88864pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[8 <./figures/aula1a/signumContinua.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 349--355
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 358--366
+ [] 
+ []
+
+<figures/aula1a/rampaContinua.png, id=47, 561.09625pt x 420.57124pt>
+File: figures/aula1a/rampaContinua.png Graphic file (type png)
+<use figures/aula1a/rampaContinua.png>
+Package pdftex.def Info: figures/aula1a/rampaContinua.png  used on input line 369.
+(pdftex.def)             Requested size: 234.8775pt x 176.04831pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9 <./figures/aula1a/signumDiscreta.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 388--396
+ [] 
+ []
+
+<figures/aula1a/rampaDiscreta.png, id=51, 560.0925pt x 420.57124pt>
+File: figures/aula1a/rampaDiscreta.png Graphic file (type png)
+<use figures/aula1a/rampaDiscreta.png>
+Package pdftex.def Info: figures/aula1a/rampaDiscreta.png  used on input line 399.
+(pdftex.def)             Requested size: 234.8775pt x 176.36919pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[10 <./figures/aula1a/rampaContinua.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 422--428
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 430--444
+ [] 
+ []
+
+[11 <./figures/aula1a/rampaDiscreta.png>]
+<figures/aula1a/pulsoLarguraTContinuo.png, id=59, 559.08875pt x 439.6425pt>
+File: figures/aula1a/pulsoLarguraTContinuo.png Graphic file (type png)
+<use figures/aula1a/pulsoLarguraTContinuo.png>
+Package pdftex.def Info: figures/aula1a/pulsoLarguraTContinuo.png  used on input line 447.
+(pdftex.def)             Requested size: 375.80544pt x 295.52495pt.
+ [12 <./figures/aula1a/pulsoLarguraTContinuo.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 468--482
+ [] 
+ []
+
+<figures/aula1a/pulsoLarguraTDiscreto.png, id=63, 561.09625pt x 437.635pt>
+File: figures/aula1a/pulsoLarguraTDiscreto.png Graphic file (type png)
+<use figures/aula1a/pulsoLarguraTDiscreto.png>
+Package pdftex.def Info: figures/aula1a/pulsoLarguraTDiscreto.png  used on input line 485.
+(pdftex.def)             Requested size: 281.85587pt x 219.83197pt.
+[13 <./figures/aula1a/pulsoLarguraTDiscreto.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 505--511
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 513--532
+ [] 
+ []
+
+<figures/aula1a/pulsoLarguraTAreaContinua.png, id=68, 508.90125pt x 352.31625pt>
+File: figures/aula1a/pulsoLarguraTAreaContinua.png Graphic file (type png)
+<use figures/aula1a/pulsoLarguraTAreaContinua.png>
+Package pdftex.def Info: figures/aula1a/pulsoLarguraTAreaContinua.png  used on input line 535.
+(pdftex.def)             Requested size: 234.8775pt x 162.6104pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[14]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 568--574
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 576--591
+ [] 
+ []
+
+[15 <./figures/aula1a/pulsoLarguraTAreaContinua.png>]
+<figures/aula1a/impulsoContinua.png, id=76, 558.085pt x 422.57875pt>
+File: figures/aula1a/impulsoContinua.png Graphic file (type png)
+<use figures/aula1a/impulsoContinua.png>
+Package pdftex.def Info: figures/aula1a/impulsoContinua.png  used on input line 596.
+(pdftex.def)             Requested size: 211.38832pt x 160.0593pt.
+<figures/aula1a/pulsoDiscreto.png, id=77, 556.0775pt x 411.5375pt>
+File: figures/aula1a/pulsoDiscreto.png Graphic file (type png)
+<use figures/aula1a/pulsoDiscreto.png>
+Package pdftex.def Info: figures/aula1a/pulsoDiscreto.png  used on input line 601.
+(pdftex.def)             Requested size: 211.38832pt x 156.44238pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 624--630
+ [] 
+ []
+
+[16 <./figures/aula1a/impulsoContinua.png> <./figures/aula1a/pulsoDiscreto.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 632--642
+ [] 
+ []
+
+<figures/aula1a/pulsoTriangularLarguraT.png, id=81, 559.08875pt x 418.56375pt>
+File: figures/aula1a/pulsoTriangularLarguraT.png Graphic file (type png)
+<use figures/aula1a/pulsoTriangularLarguraT.png>
+Package pdftex.def Info: figures/aula1a/pulsoTriangularLarguraT.png  used on input line 646.
+(pdftex.def)             Requested size: 281.85587pt x 211.01855pt.
+[17 <./figures/aula1a/pulsoTriangularLarguraT.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 661--667
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 669--678
+ [] 
+ []
+
+<figures/aula1a/pulsoGaussiano.png, id=85, 744.7825pt x 440.64626pt>
+File: figures/aula1a/pulsoGaussiano.png Graphic file (type png)
+<use figures/aula1a/pulsoGaussiano.png>
+Package pdftex.def Info: figures/aula1a/pulsoGaussiano.png  used on input line 681.
+(pdftex.def)             Requested size: 281.85587pt x 166.76149pt.
+[18 <./figures/aula1a/pulsoGaussiano.png>]
+Overfull \hbox (12.0pt too wide) in paragraph at lines 699--705
+ [] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 707--714
+ [] 
+ []
+
+<figures/aula1a/Sinc.png, id=92, 558.085pt x 409.53pt>
+File: figures/aula1a/Sinc.png Graphic file (type png)
+<use figures/aula1a/Sinc.png>
+Package pdftex.def Info: figures/aula1a/Sinc.png  used on input line 717.
+(pdftex.def)             Requested size: 281.85587pt x 206.83289pt.
+[19 <./figures/aula1a/Sinc.png>] (./templateBase.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 4948 strings out of 476162
- 75708 string characters out of 5794813
- 1938975 words of memory out of 5000000
- 26927 multiletter control sequences out of 15000+600000
+ 5093 strings out of 476162
+ 80968 string characters out of 5794813
+ 1947975 words of memory out of 5000000
+ 27072 multiletter control sequences out of 15000+600000
  564239 words of font info for 58 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 57i,11n,65p,402b,1407s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/melkor/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on templateBase.pdf (3 pages, 183355 bytes).
+ 57i,12n,65p,430b,1407s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/melkor/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on templateBase.pdf (19 pages, 731343 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 166 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -134,70 +134,588 @@ Podemos obter, também, alguns dados extras como período, frequência, e duraç
       l=149.69
 \end{lstlisting}
 \end{boxedd}
-\subsection
-\iffalse
-In this note, we will show how transformations can be used to obtain
-a radically simple derivation of the equation of the line of best fit.
-Our approach also gives a simple geometric interpretation of the Pearson
-correlation coefficient.
 
-Given a sequence of $n$ points in the plane $(X_1, Y_1), \ldots, (X_n, Y_n)$
-we seek the linear equation $y = a + bx$ that approximates the points
-as closely as possible, in the sense that the sum of the squared residuals
-$E = \sum_{i=1}^n (Y_i - a - bX_i)^2$ is minimized.
+\subsection{Sinais bidimensionais}
+Existem, também, os sinais bidimensionais, como, por exemplo, uma imagem monocromática, que mede a variação da variável dependente \textbf{intensidade luminosa} com relação à variável independente \textbf{posição em um plano bidimensional x / y}
 
-We assume that not all of the points lie on a single horizontal or vertical
-line. In that case, we can apply a \emph{transformation} to the points
-so that $\sum x_i = \sum y_i = 0$ and $\sum x_i^2 = \sum y_i^2 = 1$.
-The transformation is defined by
-$$
-x_i = \frac{X_i - \overline{X}}{\sqrt{\sum (X_i - \overline{X})^2}}\quad\text{and}\quad
-y_i = \frac{Y_i - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}.
-$$
+\begin{boxedd}
+\begin{lstlisting}
+  >> A=rand(3,3)
+  >> imshow(A)
+\end{lstlisting}
+\end{boxedd}
+Podemos gerar uma matriz quadrada contendo números aleatórios entre 0 e 1 por meio do comando \(rand(x,x)\) e, então, mostra-los em um gráfico por meio do comando \(imshow()\), que plota a matriz utilizando uma cores do branco até o preto: quanto maior um valor \(A_{ij}\) da matriz, mais próximo do branco.
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula1a/sinalbi.png}
+    \caption{Sinal bidimensional}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \[
+    A =
+    \begin{bmatrix}
+    0.1047 & 0.5966 & 0.8904 \\
+    0.8517 & 0.5668 & 0.4289 \\
+    0.4543 & 0.6925 & 0.2494
+    \end{bmatrix}
+    \]
+  \end{minipage}
+\end{figure}
 
-This transformation is linear, so it maps lines to lines.
-If we transform a line fitted to the data,
-the sum of squared residuals is multiplied by a positive constant factor.
-Therefore, the transformation preserves the line of best fit.
+\subsection{Sinais Tridimensionais}
+Além de sinais bidimensionais, existem, também, sinais tridimensionais. Seguindo a mesma lógica anterior, é possível ter um vídeo das matrizes monocromáticas medindo a variação da variável dependente \textbf{intensidade luminosa} com relação às variáveis independentes \textbf{posição em um plano bidimensional x/y} e \textbf{tempo(indicado pelo número de quadros)}.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/aula1a/sinalTri.png}
+  \caption{Sinal tridimensional}
+  \label{fig:label}
+\end{figure}
+\newpage
+\section{Sinais elementares}
+Primeiramente, precisamos definir dois tipos diferentes de sinais:
+\begin{enumerate}
+  \item Sinais contínuos;
+  \item Sinais discretos
+\end{enumerate}
+Sinais contínuos, como o nome indica, são definidos para todo instante de tempo, podendo assumir valores em qualquer ponto do eixo do tempo, sendo, normalmente, representados por \(x(t)\), sendo \(t\) contínuo.
+Dentre os exemplos desses sinais estão:
+\begin{itemize}
+  \item Temperatura ao longo de um dia; 
+  \item Sinal de áudio analógico
+  \item Tensão em um circuito elétrico
+\end{itemize}
+Sinais discretos, por outro lado, são definidos apenas em instantes específicos de tempo, podendo ser obtidos por amostragem de sinais contínuos. Normalmente, são representados por \(x[n]\), onde \textit{n} é um índice inteiro.
+Dentre os exemplos desses sinais estão:
+\begin{itemize}
+  \item Áudio digital(amostrado);
+  \item Dados coletados por um sensor a cada segundo;
+  \item Temperatura média de algum local por hora.
+\end{itemize}
+
+\subsection{Degrau unitário}
+\subsubsection{Degrau unitário contínua}
+Primeiramente, definimos a função degrau unitário contínua como:
+\begin{equation}
+  u(t)=\begin{cases}
+    0, & \text{se $t<0$}\\
+  1, & \text{se $t\geq0$}
+  \label{eq:degrauUnitarioContinua}
+  \end{cases}
+\end{equation}
+ou por código, onde verificamos se cada valor em um \textit{array} é maior ou igual a zero e então convertemos esses valores booleanos para double:
+\begin{boxedd}
+\begin{lstlisting}
+ function x=f_u(t)
+      x=double(t>=0);
+end;
+\end{lstlisting}
+\end{boxedd}
+podemos, então, utilizando a função, plotar um gráfico a mostrando:
+
+ \begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>x=f_u(t);
+  >>plot(t,x);
+  >>grid on;
+  >>axis([-15,15,-0.1,1.1])
+\end{lstlisting}
+\end{boxedd}    
+Primeiro, criamos um \textit{array} \(t\) com 1000 valores indo de -15 até 15. Então, aplicamos a função em \(t\) e armazenamos o valor e \(x\). Plotamos, definindo um \textit{grid} e o axis indo, no eixo das abscissas, de -15 até 15 e, no eixo das coordenadas, de -0.1 até 1.1:
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=.5\linewidth]{figures/aula1a/degrauContinua.png}
+  \caption{Função degrau contínua}
+  \label{fig:label}
+\end{figure}
+
+\subsubsection{Degrau unitário discreta}
+A função degrau unitário discreta, por sua vez, é definida como:
+\begin{equation}
+  u[n]=\begin{cases}
+       0, & \text{se $n<0$}\\
+       1, & \text{se $n\geq0$}
+        \end{cases}
+  \label{eq:degrauUnitarioDiscreta}
+\end{equation}
+Por código, a definição é a mesma da degrau unitario contínua, a mudança se dá porque aplicamos agora a um array discreto composto por números inteiros:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>n=[-15:15]
+  >>xn=f_u(n);
+  >>bar(n,xn,0.2,'b','edgecolor','none');
+  >>axis([min(n),max(n),-0.1, 1,1])
+ \end{lstlisting}
+\end{boxedd} 
+Obtemos, então:
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=.5\linewidth]{figures/aula1a/degrauDiscreta.png}
+  \caption{Função degrau discreta}
+  \label{fig:label}
+\end{figure}
+
+\subsection{Signum}
+\subsubsection{Signum contínua}
+A função Signum(tanto contínua quanto discreta)é uma alteração da função degrau. A Signum contínua tem como definição:
+\begin{equation}
+  Sgn(t)=\begin{cases}
+      -1, & \text{se $t < 0$}\\
+       1, & \text{se $t\geq0$}\\
+         \end{cases}
+  \label{eq:signumContinua}
+\end{equation}
+Ou, definindo-a como uma alteração da função degrau:
+\begin{equation}
+  Sgn(t)=2u(t)-1
+  \label{eq:signumContinua2}
+\end{equation}
+Precisamos, também, de sua definição no código, ou seja:
+\begin{boxedd}
+\begin{lstlisting}
+  function x=f_s(t)
+    x=2*f_u(t)-1;
+  end;
+\end{lstlisting}
+\end{boxedd} 
 
 
-Let $r = \sum x_i y_i$. Then
-\begin{align*}
-E &= \sum (y_i - a - bx_i)^2 \\
-&= \sum (y_i^2 + a^2 + b^2 x_i^2 - 2ay_i - 2bx_iy_i + 2abx_i) \\
-&= \sum y_i^2 + \sum a^2 + \sum b^2 x_i^2 
- - \sum 2ay_i - \sum 2bx_iy_i + \sum 2abx_i \\
-&= 1 + na^2 + b^2 - 2br \\
-&= (1-r^2) + na^2 + (b - r)^2\ .
-\end{align*}
+Plotando-a no gráfico, temos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>linspace(-15,15,1000);
+  >>x=f_s(t);
+  >>grid on;
+  >>axis([-15,15,-1.1, 1,1])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/aula1a/signumContinua.png}
+  \caption{Signum contínua}
+  \label{fig:label}
+\end{figure}
+\subsubsection{Signum discreta}
+Passando para forma discreta, é definida por:
+\begin{equation}
+  Sgn[n]=\begin{cases}
+      -1, & \text{se $n<0$}\\
+       1, & \text{se $n\geq0$}\\
+         \end{cases}
+  \label{eq:signumDiscreta}
+\end{equation}
+Ou, definindo-a como uma alteração da função degrau:
+\begin{equation}
+  Sgn[n]=2u[n]-1
+  \label{eq:SignumDiscreta2}
+\end{equation}
+Plotando-a no gráfico, temos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>n=[-15:15]
+  >>xn=f_s(n);
+  >>bar(n,xn, 'b', 'edgecolor', 'none');
+  >>grid on;
+  >>axis([min(n),max(n),-1.1, 1,1])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/aula1a/signumDiscreta.png}
+  \caption{Signum discreta}
+  \label{fig:label}
+\end{figure}
 
-The sum is minimized when $a = 0$ and $b = r$, so the line of best fit is
-$y = rx$. What a simple equation!
-Unfortunately, the equation is a bit messier when expressed in terms of the
-original variables.
+\subsection{Rampa}
+\subsubsection{Rampa contínua}
+A função rampa, como o nome indica, se assemelha a uma rampa, podendo ser, também, definida a partir da função degrau. Por sua definição independente, tem-se:
+\begin{equation}
+  r(t)=\begin{cases}
+        0, & \text{se $t<0$}\\
+        t, & \text{se $t\geq0$}\\
+      \end{cases}
+  \label{eq:rampaContínua}
+\end{equation}
+Ou, definindo-a como uma alteração da função degrau:
+\begin{equation}
+  r(t)=tu(t)
+  \label{eq:rampaContinua2}
+\end{equation}
+Precisamos, também, de sua definição no código:
+\begin{boxedd}
+\begin{lstlisting}
+    function x=f_r(t) 
+      x=t.*f_u(t);
+    end;
+\end{lstlisting}
+\end{boxedd} 
 
-\begin{align*}
-\frac{y - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}
-&= \left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sqrt{\sum (X_i - \overline{X})^2 \sum (Y_i - \overline{Y})^2}}
-   \right)
-   \left(
-     \frac{x - \overline{X}}
-          {\sqrt{\sum (X_i - \overline{X})^2}}
-   \right)\\
-y - \overline{Y} &=
-\left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sum (X_i - \overline{X})^2}
-   \right)
-   (x - \overline{X})\ .
-\end{align*}
+Plotando-a no gráfico, temos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>linspace(-15,15,1000);
+  >>x=f_r(t);
+  >>plot(t,x);
+  >>grid on;
+  >>axis([-15,15,-2, 16])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/aula1a/rampaContinua.png}
+  \caption{Rampa contínua}
+  \label{fig:label}
+\end{figure}
+\subsubsection{Rampa discreta}
+Precisamos, também, da rampa discreta, definida como:
+\begin{equation}
+  r[n]=\begin{cases}
+        0, & \text{se $n<0$}\\
+        n, & \text{se $n\geq0$}\\
+      \end{cases}
+  \label{eq:rampaDiscreta}
+\end{equation}
+Ou, definindo-a como uma alteração da função degrau:
+\begin{equation}
+  r[n]=tu[n]
+  \label{eq:rampaDiscreta2}
+\end{equation}
+Plotando-a no gráfico, temos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>n=[-15:15];
+  >>xn=f_r(n);
+  >>bar(n,xn, 0.2, 'b', 'edgecolor', 'none');
+  >>grid on;
+  >>axis([-15,15,-2, 16])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/aula1a/rampaDiscreta.png}
+  \caption{Rampa discreta}
+  \label{fig:label}
+\end{figure}
 
-Note that $r$ is the Pearson correlation coefficient of the sample.
-This shows that the correlation coefficient can be interpreted geometrically
-as the slope of the line of best fit when the $x$ and $y$ values are standardized.
-\fi
+\newpage
+\subsection{Pulso Largura T}
+\subsubsection{Pulso Largura T Contínuo}
+Este sinal consiste em um pulso definido por uma largura \(T\) específica. Sua versão contínua é definida por:
+\begin{equation}
+  p_T(t,T)=\begin{cases}
+        0, & \text{se $t< -\frac{T}{2}$}\\
+        1, & \text{se $-\frac{T}{2} \leq t \leq \frac{T}{2} $}\\
+        0, & \text{se $t\geq \frac{T}{2}$}\\
+         \end{cases}
+  \label{eq:pulsoLarguraTContinuo}
+\end{equation}
+Ou, utilizando a função degrau para defini-la:
+\begin{equation}
+  p_T(t,T)=u\left(t+\frac{T}{2}\right)-u\left(t-\frac{T}{2}\right)
+  \label{eq:pulsoLarguraTContinuo}
+\end{equation}
+Definindo-a no código, temos:
+\begin{boxedd}
+  \begin{lstlisting}
+    function x=f_p(t,T)
+      x=f_u(t+T/2)-u(T-T/2)
+    end;
+  \end{lstlisting}
+\end{boxedd} 
+Plotando-a no gráfico, temos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>x=f_p(t,3);
+  >>subplot(211)
+  >>plot(t,x,'b');
+  >>grid on;
+  >>axis([-15,15,-0.1, 1.1])
+  >>x=f_p(t,9);
+  >>subplot(212);
+  >>plot(t,x,'r')
+  >>grid on;
+  >>axis([-15,15,-0.1, 1.1])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/aula1a/pulsoLarguraTContinuo.png}
+  \caption{Pulso largura T contínuo}
+  \label{fig:label}
+\end{figure}
 
+\subsubsection{Pulso Largura T Discreto}
+Para o pulso discreto, definimos como:
+\begin{equation}
+  p_T[n,T]=\begin{cases}
+        0, & \text{se $n< -\frac{T}{2}$}\\
+        1, & \text{se $-\frac{T}{2} \leq n \leq \frac{T}{2} $}\\
+        0, & \text{se $n\geq \frac{T}{2}$}\\
+         \end{cases}
+  \label{eq:pulsoLarguraTContinuo}
+\end{equation}
+Ou, utilizando a função degrau para defini-la:
+\begin{equation}
+  p_T[n,T]=u\left(n+\frac{T}{2}\right)-u\left(n-\frac{T}{2}\right)
+  \label{eq:pulsoLarguraTContinuo}
+\end{equation}
+Plotando-o de forma similar, obtemos:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>n=[-15:15]
+  >>xn=f_p(n,3);
+  >>subplot(211)
+  >>bar(n,xn,'b','edgecolor','none');
+  >>grid on;
+  >>axis([-15,15,-0.1, 1.1])
+  >>xn=f_p(n,9);
+  >>subplot(212);
+  >>bar(n,xn,'b','edgecolor','none');
+  >>grid on;
+  >>axis([-15,15,-0.1, 1.1])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/aula1a/pulsoLarguraTDiscreto.png}
+  \caption{Pulso largura T discreto}
+  \label{fig:label}
+\end{figure}
+\newpage
+\subsection{Pulso Largura T com área unitária}
+Aqui, temos, por definição:
+\begin{equation}
+    p_{Td}(t,T)=\begin{cases}
+                0, & \text{se $t<-\frac{T}{2}$}\\
+                \frac{1}{T}, & \text{se $-\frac{T}{2}\leq t \leq \frac{T}{2}$}\\
+                0, & \text{se $t > \frac{T}{2}$}
+              \end{cases}
+  \label{eq:pulsoLarguraTAreaUnitaria}
+\end{equation}
+Aqui, faz todo sentido utilizarmos também a função do pulso de largura T visto anteriormente para definirmos a função tanto no código como, também, de forma matemática:
+\begin{equation}
+  p_{Td}(t,T)=\frac{1}{T}p_T(t,T)
+  \label{eq:pulsoLarguraTAreaUnitaria2}
+\end{equation}
+\begin{boxedd}
+  \begin{lstlisting}
+    function x=f_pd(t,T)
+      x=1/T*f_p(t,T);
+    end;
+  \end{lstlisting}
+\end{boxedd} 
+Plotando-o:
+ \begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>x=f_pd(n,2);
+  >>subplot(311)
+  >>plot(t,x,'r');
+  >>grid on;
+  >>axis([-5,5,-0.1, 6])
+  >>x=f_pd(n,0.5);
+  >>subplot(312)
+  >>plot(t,x,'b');
+  >>grid on;
+  >>axis([-5,5,-0.1, 6])
+  >>x=f_pd(n,0.2);
+  >>subplot(313)
+  >>plot(t,x,'k');
+  >>grid on;
+  >>axis([-5,5,-0.1, 6])
+ \end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/aula1a/pulsoLarguraTAreaContinua.png}
+  \caption{Pulso largura T com área unitaria}
+  \label{fig:label}
+\end{figure}
 
+\newpage
+\subsection{Impulso Contínuo}
+O impulso é definido como uma pertubarção instantânea no sistema, ou seja:
+\begin{equation}
+  \delta(t)=\begin{cases}
+            0, & \text{se $t\neq0$}\\
+            \infty, & \text{se $t=0$}
+          \end{cases}
+  \label{eq:}
+\end{equation}
+\begin{equation}
+  \delta[n]=\begin{cases}
+            0, & \text{se $n\neq0$}\\
+            1, & \text{se $n=0$}
+          \end{cases}
+  \label{eq:}
+\end{equation}
+Podemos calcular sua área e notamos que tem o valor de 1:
+\begin{equation}
+    \int_{-\infty}^{+\infty} \delta(t)\, dt = \int_{-0}^{+0} \delta\, dt=1
+  \label{eq:}
+\end{equation}
+Esta função pode, também, ser definida a partir da função pulso de largura T com área unitária quando sua largura T tende a 0, ou seja:
+\begin{equation}
+  \delta(t)=\lim_{T \to 0} p_{Td}(t)
+  \label{eq:}
+\end{equation}
+Sua definição no código apenas se da de forma discreta, sendo impossível ter uma função impulso de forma contínua pois $\infty$ não é um número definido para computadores, ou seja:
+\begin{boxedd}
+  \begin{lstlisting}
+    function x=f_d(n)
+      x=double(n==0);
+    end;
+  \end{lstlisting}
+\end{boxedd} 
+Plotando, obtemos:
+\begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-5,5,1001);
+  >>x=t*0;
+  >>plot(t,x);
+  >>grid on;
+  >>axis([-5,5,0,1.1])
+  >>plot_arrow_fga([0,0],[0,1],'r')
+  
+  >>n=[-15:15];
+  >>xn=f_d(n);
+  >>bar(n,xn,0.2,'r','edgecolor','none');
+  >>grid on;
+  >>axis([-15,15,-0,1.1])
+\end{lstlisting}
+\end{boxedd} 
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/aula1a/impulsoContinua.png}
+    \caption{Impulso contínuo}
+     \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula1a/pulsoDiscreto.png}
+    \caption{Impulso discreto}
+  \end{minipage}
+\end{figure}
+\subsection{Pulso Triangular Largura T}
+Aqui, temos um pulso, mas triangular, definido como:
+\begin{equation}
+  p_T(t)=\begin{cases}
+            0, & \text{se $t<-\frac{T}{2}$}\\
+            1-\frac{2}{T}|t|, & \text{se $-\frac{T}{2}\leq t \leq \frac{T}{2}$}\\
+            0, & \text{se $t>\frac{T}{2}$}
+          \end{cases}
+  \label{eq:}
+\end{equation}
+\begin{equation}
+  p_T[n]=\begin{cases}
+            0, & \text{se $n<-\frac{T}{2}$}\\
+            1-\frac{2}{T}|n|, & \text{se $-\frac{T}{2}\leq n \leq \frac{T}{2}$}\\
+            0, & \text{se $n>\frac{T}{2}$}
+          \end{cases}
+  \label{eq:}
+\end{equation}
+Para sua definição por código:
+\begin{boxedd}
+  \begin{lstlisting}
+    function x=f_pt(t,T)
+      x=(1-2/T*abs(t)).*f_p(t,T);
+    end;
+  \end{lstlisting}
+\end{boxedd} 
+Plotando:
+\begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>hold on; grid on;
+  >>x=f_pt(t,3);
+  >>plot(t,x,'b');
+  >>x=f_pt(t,9);
+  >>plot(t,x,'r');
+  >>axis([-15,15,-0.1,1.1])
+\end{lstlisting}
+\end{boxedd} 
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/aula1a/pulsoTriangularLarguraT.png}
+  \caption{Pulso triangular largura T}
+  \label{fig:label}
+\end{figure}
+\newpage
+\subsection{Pulso Gaussiano(med,std)}
+\begin{equation}
+  p_{m,s}(t)=\frac{1}{s\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{t-m}{s}\right)^2}
+  \label{eq:}
+\end{equation}
+\begin{equation}
+  p_{m,s}[n]=\frac{1}{s\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{n-m}{s}\right)^2}
+  \label{eq:}
+\end{equation}
+As definições por código:
+\begin{boxedd}
+\begin{lstlisting}
+  function  x=f_pg(t,med_in,std_in)
+   x =1/(std_in*sqrt(2*pi))*exp(-1/2*((t-med_in)/std_in).^2 );
+end;
+ \end{lstlisting}
+\end{boxedd} 
+Plotando:
+\begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>hold on; grid on;
+  >>x=f_pg(t,0,2);
+  >>plot(t,x,'b');
+  >>x=f_pg(t,5,2);
+  >>plot(t,x,'r');
+\end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/aula1a/pulsoGaussiano.png}
+  \caption{Pulso Gaussiano}
+  \label{fig:label}
+\end{figure}
+
+\newpage
+\subsection{Sinc}
+O sinal \textit{sinc} é definido como:
+\begin{equation}
+    x(t)=\frac{sin(t)}{t}
+   \label{eq:}
+\end{equation}
+\begin{equation}
+  x[n]=\frac{sin(n)}{n}
+    \label{eq:}
+\end{equation}
+
+Definindo por código:
+\begin{boxedd}
+\begin{lstlisting}
+function  x=f_sc(t)
+   x =sinc(t);
+end;
+\end{lstlisting}
+\end{boxedd} 
+Plotando:
+\begin{boxedd}
+\begin{lstlisting}
+  >>t=linspace(-15,15,1000);
+  >>x=f_sc(t);
+  >>plot(t,x,'b');
+  >>grid on;
+\end{lstlisting}
+\end{boxedd} 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/aula1a/Sinc.png}
+  \caption{Sinc}
+  \label{fig:label}
+\end{figure}
 \end{document}
