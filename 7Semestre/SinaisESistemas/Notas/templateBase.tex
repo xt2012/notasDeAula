@@ -718,4 +718,120 @@ Plotando:
   \caption{Sinc}
   \label{fig:label}
 \end{figure}
+
+\section{Exponential and Sinusoidal Signals}
+
+The continuous-time complex exponential signal is of the form
+\begin{equation}
+    x(t)=Ce^{at}
+  \label{eq:}
+\end{equation}
+where \textit{C} and \textit{a} are, in general, complex numbers.(Dependendo dos valores destes parâmetros, a exponencial complexa pode exibir diferentes características)
+
+\subsection{Real Exponentials}
+If \(C\) and \(a\) are real(caso em que \(x(t)\) é chamado de \textbf{exponencial real}), existem dois tipos de comportamentos:
+\begin{enumerate}
+  \item Se \(a>0\), então com o aumentar de \(t\), \(x(t)\) é um exponencial crescente;
+  \item Se \(a<0\), então com o aumentar de \(t\), \(x(t)\) é um exponencial decrescente.
+\end{enumerate}
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula2a/expRealCrescente.png}
+    \caption{Exponencial real crescente}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula2a/expRealDecrescente.png}
+    \caption{Exponencial real decrescente}
+  \end{minipage}
+\end{figure}
+
+\subsection{Sinais periódicos}\label{sub:sinais_periodicos} % (fold)
+Uma classe importante de sinais são dos \textbf{sinais periódicos}. Um sinal periódico \(x(t)\)contínuo no tempo possui a propriedade que existe um valor positivo de \(T\) para qual:
+\begin{equation}
+    x(t)=x(t+T)
+  \label{eq:sinalPeriodico}
+\end{equation}
+para todos os valores de \(t\). Ou seja, um sinal periódico tem a propriedade de ser imutável por um deslocamento de tempo \(T\). 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.35\textwidth]{figures/aula2a/sinalPeriodico.png}
+  \end{center}
+  \caption{Sinal periódico}\label{fig:}
+\end{figure}
+  \subsection{Exponenciais complexos periódicos}
+Uma segunda categoria de exponenciais complexos é obtida ao limitar \(a\) para ser puramente imaginário. Considere a função:
+\begin{equation}
+    x(t)=e^{j\omega_0t}
+  \label{eq:}
+\end{equation}
+Uma propriedade importante desse sinal é que ele é periódico, ou seja, obedece à equação \ref{eq:sinalPeriodico}, ou seja:
+\begin{equation}
+  e^{j\omega t}=e^{j\omega(t+T)}
+  \label{eq:}
+\end{equation}
+Seguindo o raciocínio:
+\begin{align*}
+  e^{j\omega(t+T)}=e^{j\omega t}&e^{j\omega T}=e^{j\omega t}\\
+                  &e^{j\omega T}=\frac{e^{j\omega t}}{e^{j\omega t}}=1\\
+                  &e^{j\omega T}=1\\
+\end{align*}
+Se \(\omega_0=0\), então \(x(t)=1\), que é uma função periódica para qualquer valor de \(T\). Se \(\omega_0 \neq 0\), então precisamos descobrir o período fundamental \(T_0\)(o menor valor positivo de \(T\) para que \(e^{j\omega T}=1\) seja verdadeiro).
+
+Sabemos que o número  \(e^{j\omega_0T} = e^{j\theta}\)(onde \(\theta(rads)=\omega_0(\frac{rads}{s}) T(s)\)) é igual a 1 quando o angulo está em total rotação\footnote{\(e^j\theta = cos\theta + jsin\theta\). O número 1 no plano complexo é \(1=1+j0\), então precisamos que: \(cos\theta=1\) e  \(sin\theta=0\) e isso ocorre exatamente em \(\theta=2\pi k, k \in \mathbb{Z}\)}, ou seja:
+\begin{align*}
+   \theta=2\pi k, k \in \mathbb{Z}
+\end{align*}
+Assim sendo,
+\begin{align*}
+  \omega_0T&=2\pi k, k \in \mathbb{Z}\\
+    T&=\frac{2\pi k}{\omega_0}
+\end{align*}
+Esta última equação nos dá todos os possíveis períodos, mas precisamos do período fundamental, logo, pegamos o menor valor de \(k=1\). Assim sendo, o período fundamental \(T_0\) é:
+\begin{equation}
+    T_0=\frac{2\pi}{|\omega_0|}
+  \label{eq:}
+\end{equation}
+Dessa forma, os sinais \(e^{j\omega_0 t}\) e \(-e^{j\omega_0 t}\) possuem o mesmo período fundamental.
+
+\subsection{Sinais exponenciais complexos gerais}
+O caso mais geral de um exponencial complexo pode ser expresso e interpretado em termos dos dois casos já analisados: o exponencial real e o exponencial complexo periódico. Considere um exponencial complexo \(Ce^{at}\), onde \textit{C} é expresso em forma polar e \textit{a} em forma retangular, isto é:\footnote{pode ser expresso também como \(Ce^{(\sigma + j\omega)t}\)}
+\begin{align*}
+  C=|C|e^{j\theta}\quad\text{e}\quad a=r+j\omega_0 
+\end{align*}
+então:
+\begin{equation}
+  Ce^{at}=|C|e^{j\theta}e^{(r+j\omega_0)t}=|C|e^{rt}e^{j(\omega_0 t+\theta)}
+  \label{eq:}
+\end{equation}
+Utilizando a relação de Euler, conseguimos expandir para:
+\begin{equation}
+  Ce^{at}=|C|e^{rt}cos(\omega_0 t+\theta)+j|C|e^{rt}sin(\omega_0 t+\theta)
+  \label{eq:}
+\end{equation}
+Assim sendo, temos alguns casos:
+\begin{itemize}
+  \item Para \(r=0\), a parte real e imaginária do exponencial complexo são senoidais;
+  \item Para \(r>0\), as partes reais e imaginarias do exponencial complexo correpondem a sinais senoidais multiplicados por um fator exponencial crescente(imagem \ref{fig:expComplexoCrescente})
+  \item Para \(r<0\), as partes reais e imaginarias do exponencial complexo correpondem a sinais senoidais multiplicados por um fator exponencial decrescente (imagem \ref{fig:expComplexoDecrescente})
+
+\end{itemize}
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula2a/expComplexoCrescente.png}
+    \caption{Sinal exponencial complexo com \(r>0\)}
+    \label{fig:expComplexoCrescente}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/aula2a/expComplexoDecrescente.png}
+    \caption{Sinal exponencial complexo com \(r<0\)}
+    \label{fig:expComplexoDecrescente}
+  \end{minipage}
+\end{figure}
 \end{document}
