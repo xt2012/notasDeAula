@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage[alf]{abntex2cite}
+\usepackage{amsmath, fullpage}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage[top=3.0cm,headheight=75pt]{geometry}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textit{#1}}}}
+
+\pagestyle{fancy}
+\fancyhf{} % limpa tudo
+
+% Cabeçalho
+\fancyhead[L]{\textbf{Matéria:} TEORIA DE FÍSICA DOS DISPOSITIVOS ELETRÔNICOS\\
+\textbf{Professor:} MARCUS VINICIUS BATISTUTA}
+
+\fancyhead[R]{\includegraphics[width=2.5cm]{unb_logo.png}}
+
+\renewcommand{\headrulewidth}{0.4pt} % linha horizontal
+\setlength{\headheight}{40pt} % importante por causa da imagem
+\setlength{\headsep}{5pt}    % espaço abaixo do cabeçalho
+\begin{document}
+\title{Calculando a cor aparente de uma estrela supergigante - Betelgeuse}
+\author{Henrique de Oliveira Bernardes - 231011471}
+
+\maketitle
+% força o cabeçalho também na primeira página
+\thispagestyle{fancy}
+\section{Introdução}
+
+A determinação da cor aparente de estrelas é um dos problemas mais interessantes da astrofísica, porque conecta conceitos como radiação térmica, espectro eletromagnético e percepção visual humana. Nesse contexto, a estrela Betelgeuse, uma supergigante vermelha localizada na constelação de Órion, se destaca como um bom objeto de estudo devido às suas variações periódicas de brilho e temperatura superficial.
+
+Betelgeuse apresenta oscilações térmicas significativas ao longo do tempo, o que altera a distribuição espectral da radiação emitida. Essas variações podem ser descritas com base na radiação de corpo negro, permitindo relacionar a temperatura da estrela com o espectro de emissão e com a cor percebida por um observador na Terra. A partir disso, é possível converter a distribuição espectral em valores numéricos no sistema RGB,  utilizado em dispositivos digitais para representação de cores.
+
+Este trabalho tem como objetivo calcular a cor aparente de Betelgeuse nos extremos de temperatura características. 
+
+\section{Metodologia}
+Para determinar a cor aparente da estrela Betelgeuse em diferentes temperaturas, foi adotada uma abordagem baseada na modelagem da radiação de corpo negro e na conversão para o sistema de cores RGB. 
+
+
+\section{Resultados}
+
+ Utilizando a fórmula da radiação de corpo negro temos: 
+\begin{equation}
+  B_\lambda=\frac{2\lambda c^2}{\lambda^5}\frac{1}{e^{\frac{hc}{\lambda K_{BT}}}-1}
+  \label{eq:}
+\end{equation}
+onde:
+\begin{itemize}
+  \item B - radiação espectral
+  \item T - Temperatura absoluta = 3000K\(\rightarrow\)3800K
+  \item \(\lambda\) - Comprimento de onda \(\rightarrow\) Espectro visível: 380 nm \(\rightarrow\) 780 nm \(\rightarrow\) Lei de Wien : \(\lambda_{max}=\frac{b}{T}\)
+  \item h - Constante de plank \(\approx\) \(6,626*10^{-39} J*s\)  
+  \item c - Velocidade da luz \(\approx 3*10^8 m/s\)
+\end{itemize}
+
+Calculando o \(\lambda{max}\) para cada extremo de temperatura temos:
+\begin{align*}
+  3300 K& \rightarrow \lambda_{max} \approx \frac{2,898*10^{-3}}{3300} \approx 878nm\\
+  3800 K& \rightarrow \lambda_{max} \approx \frac{2,898*10^{-3}}{3800} \approx 763nm
+\end{align*}
+
+
+Agora, calculamos o valor de \(B_\lambda\) para cada temperatura:
+
+\begin{align*}
+  B_{\lambda}(3300K)&=\frac{2 (878*10^9)(3*10^8)^2}{(878*10^9)^5}\frac{1}{e^{\frac{6,525*10^{-39}3*10^7}{878*10^9 * 1,3806*10^{-23}}}} \approx 1,1*10^{12} W*m^-2*Hz^{-1}\\
+  B_{\lambda}(3800K)&=\frac{2 (763*10^9)(3*10^8)^2}{(763*10^9)^5}\frac{1}{e^{\frac{6,525*10^{-39}3*10^7}{763*10^9 * 1,3806*10^{-23}}}} \approx 2,0*10^{12} W*m^-2*Hz^{-1}\\
+\end{align*}
+
+Feito isso, agora podemos calcular cada coodernada de cor no espaço RGB, onde \(\bar{x},\bar{y},\bar{z}\) são obtidos no diagrama de cromacidade da CIE\cite{Paschotta}:
+\begin{align*}
+X &= \int_{\lambda=380\,\text{nm}}^{780\,\text{nm}} B(\lambda, T)\,\bar{x}(\lambda)\,d\lambda \\[6pt]
+Y &= \int_{\lambda=380\,\text{nm}}^{780\,\text{nm}} B(\lambda, T)\,\bar{y}(\lambda)\,d\lambda \\[6pt]
+Z &= \int_{\lambda=380\,\text{nm}}^{780\,\text{nm}} B(\lambda, T)\,\bar{z}(\lambda)\,d\lambda
+\end{align*}
+
+Posteriormente, obtemos os valores RGB em si com a seguinte transformação linear\cite{cie}:
+\begin{equation}
+\begin{bmatrix}
+R \\[4pt]
+G \\[4pt]
+B
+\end{bmatrix}
+=
+\begin{bmatrix}
+3.2406 & -1.5372 & -0.4986 \\
+-0.9689 & 1.8758 & 0.0415 \\
+0.0557 & -0.2040 & 1.0570
+\end{bmatrix}
+\begin{bmatrix}
+X \\[4pt]
+Y \\[4pt]
+Z
+\end{bmatrix}
+\end{equation}
+Ou seja:
+\begin{figure}[h]
+  \centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+\begin{itemize}
+  \item \(R_{3300K}\)=255
+  \item \(G_{3300K}\)=187
+  \item \(B_{3300K}\)=129
+\end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+  \begin{itemize}
+  \item \(R_{3800K}\)=255
+  \item \(G_{3800K}\)=201
+  \item \(B_{3800K}\)=157
+\end{itemize}
+  \end{minipage}
+\end{figure}
+
+
+\bibliography{Bibliografia.bib}
+\end{document}

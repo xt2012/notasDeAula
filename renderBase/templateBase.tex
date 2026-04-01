@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath, fullpage}
-
+\usepackage{booktabs} % Para linhas mais profissionais (opcional)
 \begin{document}
 
 \title{The line of best fit via transformations}
@@ -9,6 +9,23 @@
 \maketitle
 \thispagestyle{empty}
 
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Trilha-2: W = 2 cm}} \\ \hline
+\textbf{Quadrado} & \textbf{Vi} \\ \hline
+1 & 0,75     \\ \hline
+2 & 1,16 \\ \hline
+3 & 1,77 \\ \hline
+4 & 2,54 \\ \hline
+5 & 3,12 \\ \hline
+6 & 3,69 \\ \hline
+7 & 4,20 \\ \hline
+8 & 4,77  \\ \hline
+\end{tabular}
+\end{table}
+\iffalse
 In this note, we will show how transformations can be used to obtain
 a radically simple derivation of the equation of the line of best fit.
 Our approach also gives a simple geometric interpretation of the Pearson
@@ -70,4 +87,5 @@ y - \overline{Y} &=
 Note that $r$ is the Pearson correlation coefficient of the sample.
 This shows that the correlation coefficient can be interpreted geometrically
 as the slope of the line of best fit when the $x$ and $y$ values are standardized.
+\fi
 \end{document}

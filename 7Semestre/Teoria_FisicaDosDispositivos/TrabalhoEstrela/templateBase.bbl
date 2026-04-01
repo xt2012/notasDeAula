@@ -1,0 +1,18 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Kerr 2010]{cie}
+\abntrefinfo{Kerr}{KERR}{2010}
+{KERR, D.~A. The cie xyz and xyy color spaces.
+2010.}
+
+\bibitem[Paschotta 2019]{Paschotta}
+\abntrefinfo{Paschotta}{PASCHOTTA}{2019}
+{PASCHOTTA, R. Color spaces.
+\emph{RP Photonics AG}, 2019.}
+
+\end{thebibliography}

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1774404379.34865 "templateBase.tex" "templateBase.pdf" "templateBase" 1774404381.26617 2
+["pdflatex"] 1774741826.1005 "templateBase.tex" "templateBase.pdf" "templateBase" 1774741827.74301 2
   "/etc/texmf/web2c/texmf.cnf" 1761868465.64365 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -99,9 +99,11 @@
   "figures/aula2a/expComplexoDecrescente.png" 1774403485.92455 18885 8b805bb97a51ab2957d18254fdf89bf7 ""
   "figures/aula2a/expRealCrescente.png" 1774398902.06744 7874 11debaac429fd1538127929a0cae3307 ""
   "figures/aula2a/expRealDecrescente.png" 1774399162.19424 8260 cdefdde507a59b06492e1eaf7e6e6451 ""
+  "figures/aula2a/sinalImpar.png" 1774741571.63743 17755 6317773bd1fafac6f61b511b6705d48a ""
+  "figures/aula2a/sinalPar.png" 1774741307.47356 21470 8fc03bb4da65da30050c1c7552b0bdf5 ""
   "figures/aula2a/sinalPeriodico.png" 1774399502.06044 8162 1b5bc5c764319fb275dfa0eed6903778 ""
-  "templateBase.aux" 1774404381.17251 8227 9b5605acfac672a5ffd5e05c59ae7387 "pdflatex"
-  "templateBase.tex" 1774404377.80054 27459 e2efdc216fba8a9dcd47ad1252095b8a ""
+  "templateBase.aux" 1774741827.64516 9147 bf3f18d4cc61aecb7f7a6c9108f2e789 "pdflatex"
+  "templateBase.tex" 1774741825.71073 28795 527839cbbb34f01fd00d27edbc5961f5 ""
   (generated)
   "templateBase.aux"
   "templateBase.log"

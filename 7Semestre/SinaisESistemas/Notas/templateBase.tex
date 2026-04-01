@@ -834,4 +834,56 @@ Assim sendo, temos alguns casos:
     \label{fig:expComplexoDecrescente}
   \end{minipage}
 \end{figure}
+\newpage
+\section{Sinais pares e ímpares}
+
+\subsection{Sinal par}
+Sinais pares são simétricos em relação ao eixo y, assim sendo, temos a seguinte relação:
+\begin{equation}
+    x(t)=x(-t)
+  \label{eq:}
+\end{equation}
+
+\begin{figure}[!h]
+  \begin{center}
+    \includegraphics[width=0.35\textwidth]{figures/aula2a/sinalPar.png}
+  \end{center}
+  \caption{Sinal Par}\label{fig:}
+\end{figure}
+
+\subsection{Sinal impar}
+Sinais impares são antissimétricos em relação ao eixo y, assim sendo, temos a seguinte relação:
+\begin{equation}
+    x(t)=-x(-t)
+  \label{eq:}
+\end{equation}
+
+\begin{figure}[!h]
+  \begin{center}
+    \includegraphics[width=0.35\textwidth]{figures/aula2a/sinalImpar.png}
+  \end{center}
+  \caption{Sinal Impar}\label{fig:}
+\end{figure}
+
+\newpage
+\subsection{Decomposição de sinais nas componentes pares e ímpares}
+A princípio, um sinal complexo pode ser decomposto em frações par e ímpar. 
+
+Para extrair a parte par da função, temos a fórmula:
+\begin{equation}
+    x_e=\frac{x(t)+x(-t)}{2}
+  \label{eq:}
+\end{equation}
+
+Para extrair a parte impar da função, temos a fórmula:
+\begin{equation}
+    x_o=\frac{x(t)-x(-t)}{2}
+  \label{eq:}
+\end{equation}
+
+Assim sendo, podemos reconstituir o sinal somando ambas as partes par e ímpar:
+\begin{equation}
+    x(t)=x_e(t)+x_o(t)
+  \label{eq:}
+\end{equation}
 \end{document}

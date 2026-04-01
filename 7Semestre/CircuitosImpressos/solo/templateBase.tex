@@ -1,75 +1,58 @@
 \documentclass{article}
 \usepackage{amsmath, fullpage}
+\usepackage{setspace}
 
+\usepackage[top=0.5cm,headheight=75pt]{geometry}
+\onehalfspacing
 \begin{document}
 
-\title{Teoria de Física dos Dispositivos}
+\title{Circuitos impressos de alta frequência - Sebastien}
 \author{Henrique de O. Bernardes}
 %\date{\vspace{-5ex}}
 \maketitle
 \thispagestyle{empty}
+\section{Transmission Line Theory}
 
-\iffalse
-In this note, we will show how transformations can be used to obtain
-a radically simple derivation of the equation of the line of best fit.
-Our approach also gives a simple geometric interpretation of the Pearson
-correlation coefficient.
-
-Given a sequence of $n$ points in the plane $(X_1, Y_1), \ldots, (X_n, Y_n)$
-we seek the linear equation $y = a + bx$ that approximates the points
-as closely as possible, in the sense that the sum of the squared residuals
-$E = \sum_{i=1}^n (Y_i - a - bX_i)^2$ is minimized.
-
-We assume that not all of the points lie on a single horizontal or vertical
-line. In that case, we can apply a \emph{transformation} to the points
-so that $\sum x_i = \sum y_i = 0$ and $\sum x_i^2 = \sum y_i^2 = 1$.
-The transformation is defined by
-$$
-x_i = \frac{X_i - \overline{X}}{\sqrt{\sum (X_i - \overline{X})^2}}\quad\text{and}\quad
-y_i = \frac{Y_i - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}.
-$$
-
-This transformation is linear, so it maps lines to lines.
-If we transform a line fitted to the data,
-the sum of squared residuals is multiplied by a positive constant factor.
-Therefore, the transformation preserves the line of best fit.
+  A simple circuit with voltage \(V_G\) and source resistance \(R_G\) connected with a load resistor \(R_L\) through a two-wire line of length l can only be analyzed with Kirchhoff's voltage law when the line connecting source with load does not possess a spatial voltage variation(as is the case with low frequency circuits).
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+The transition from lumped circuit analysys obeying Kirchhoff's laws to distributed circuit theory involving voltage and current waves depend on the wavelength in comparasion with the average component size.
 
 
-Let $r = \sum x_i y_i$. Then
-\begin{align*}
-E &= \sum (y_i - a - bx_i)^2 \\
-&= \sum (y_i^2 + a^2 + b^2 x_i^2 - 2ay_i - 2bx_iy_i + 2abx_i) \\
-&= \sum y_i^2 + \sum a^2 + \sum b^2 x_i^2 
- - \sum 2ay_i - \sum 2bx_iy_i + \sum 2abx_i \\
-&= 1 + na^2 + b^2 - 2br \\
-&= (1-r^2) + na^2 + (b - r)^2\ .
-\end{align*}
+\subsection{Types of Transmission Lines}
+\subsubsection{Two-wire lines:}
+It is a system capable of transporting high-frequency eletric energy from one location to the another. However, it is unsuitable for transmitting high-frequency voltage and current waves: they suffer from the drawback that the eletric and magnetic fields emanating from the conductors extend towards infinity and thus influence on the components placed in the vicinity of the line.
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
 
-The sum is minimized when $a = 0$ and $b = r$, so the line of best fit is
-$y = rx$. What a simple equation!
-Unfortunately, the equation is a bit messier when expressed in terms of the
-original variables.
+Further, due to the fact that the two wires act as an antenna, the radiation loss tends to be very high. Thus, the two-wire line finds only limited applications in the RF domain. However it is widely used in 50-60 Hz power lines and local telephone connections. Even though the frequency is low, the distance can easily exceed over several kilometers, thus making the wire size comparable to the wave length(for example, the wavelength in air for a 60Hz wave is \(\lambda=\frac{c}{f}= \frac{3*10^8}{60}=5000km\)). Here, again, distributed circuit behavior may have to be taken into account. A common solution that helps minimize cross-talk and radiation is the twisted wire pair whereby the conductors are arranged in a helical pattern.\footnote{When current flows through a wire, it generates a magnetic field. If you have two parallel wires, one carries current forward and the other backward, thus, twisted pairs causes the fields to cancel each other out over short distances. Also, cross-talk happens when a signal in one wire induces unwanted signals in another nearby wire, with twisting, any external noise affects both wires almost equally, thus, since the receiver looks at the difference between the two wires(differential signaling), the noise cancels out.}
 
-\begin{align*}
-\frac{y - \overline{Y}}{\sqrt{\sum (Y_i - \overline{Y})^2}}
-&= \left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sqrt{\sum (X_i - \overline{X})^2 \sum (Y_i - \overline{Y})^2}}
-   \right)
-   \left(
-     \frac{x - \overline{X}}
-          {\sqrt{\sum (X_i - \overline{X})^2}}
-   \right)\\
-y - \overline{Y} &=
-\left(
-     \frac{\sum (X_i - \overline{X}) (Y_i - \overline{Y})}
-          {\sum (X_i - \overline{X})^2}
-   \right)
-   (x - \overline{X})\ .
-\end{align*}
+\subsubsection{Coaxial line}
+It is used for almost all cases of externaly connected RF systems or measurement equipment at frequencies of up to 40GHz. A typical coaxial line consists of an inner cylindrical conductor of radius a, an outer conductor of radius b, and a dieletric medium layered in between. The outer conductor completely encloss the electromagnetic fields, thus minimizing radiation loss and field interference.
 
-Note that $r$ is the Pearson correlation coefficient of the sample.
-This shows that the correlation coefficient can be interpreted geometrically
-as the slope of the line of best fit when the $x$ and $y$ values are standardized.
-\fi
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+
+\subsubsection{Microstrip Lines}
+
+
+
 \end{document}
