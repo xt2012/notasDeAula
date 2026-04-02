@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.23)  31 MAR 2026 23:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.18)  2 APR 2026 16:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -118,7 +118,14 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count276
 \l__pdf_internal_box=\box53
-) (./templateBase.aux)
+) (./templateBase.aux
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+
+LaTeX Warning: Label `eq:' multiply defined.
+
+)
 \openout1 = `templateBase.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -170,207 +177,124 @@ LaTeX Font Info:    ... okay on input line 7.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--39
-
- []
-
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+./templateBase.tex:70: Undefined control sequence.
+<argument> ... {onde} \quad \gamma ^2=(G+j\omegaC 
+                                                  )(R+j\omega L) \quad \text...
+l.70 \end{align*}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-./templateBase.tex:46: LaTeX Error: There's no line here to end.
+./templateBase.tex:70: Undefined control sequence.
+<argument> ... {onde} \quad \gamma ^2=(G+j\omegaC 
+                                                  )(R+j\omega L) \quad \text...
+l.70 \end{align*}
+                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.46 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+./templateBase.tex:75: Missing { inserted.
+<to be read again> 
+                   \left 
+l.75 \end{align*}
+                 
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
 
+./templateBase.tex:75: Missing } inserted.
+<inserted text> 
+                }
+l.75 \end{align*}
+                 
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
 
-./templateBase.tex:47: LaTeX Error: There's no line here to end.
+./templateBase.tex:75: Missing { inserted.
+<to be read again> 
+                   \left 
+l.75 \end{align*}
+                 
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.47 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+./templateBase.tex:75: Missing } inserted.
+<inserted text> 
+                }
+l.75 \end{align*}
+                 
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
 
+[4]
+./templateBase.tex:102: Missing { inserted.
+<to be read again> 
+                   \left 
+l.102    Z_0=\frac{R+j\omega L}{\omega}=\sqrt\left
+                                                  (\frac{R+j\omega L}{G+j\om...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
 
-./templateBase.tex:48: LaTeX Error: There's no line here to end.
+./templateBase.tex:104: You can't use `\eqno' in math mode.
+\veqno ->\@kernel@eqno 
+                       \aftergroup \ignorespaces 
+l.104 \end{equation}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.48 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+./templateBase.tex:104: Missing } inserted.
+<inserted text> 
+                }
+l.104 \end{equation}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-
-./templateBase.tex:49: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.49 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./templateBase.tex:50: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.50 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./templateBase.tex:51: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.51 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./templateBase.tex:52: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.52 \\
-       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./templateBase.tex:53: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.53 \iffalse
-             
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[2] (./templateBase.aux)
+[5] [6] [7] (./templateBase.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 1840 strings out of 474222
- 28428 string characters out of 5748733
- 1929975 words of memory out of 5000000
- 24123 multiletter control sequences out of 15000+600000
- 563452 words of font info for 55 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 57i,8n,65p,1307b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on templateBase.pdf (2 pages, 136675 bytes).
+ 1861 strings out of 476089
+ 28881 string characters out of 5793232
+ 1934975 words of memory out of 5000000
+ 23903 multiletter control sequences out of 15000+600000
+ 563787 words of font info for 56 fonts, out of 8000000 for 9000
+ 61 hyphenation exceptions out of 8191
+ 57i,10n,65p,1307b,199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/melkor/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on templateBase.pdf (7 pages, 177669 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

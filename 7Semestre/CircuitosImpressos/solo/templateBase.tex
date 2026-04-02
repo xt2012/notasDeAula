@@ -14,45 +14,152 @@
 \section{Transmission Line Theory}
 
   A simple circuit with voltage \(V_G\) and source resistance \(R_G\) connected with a load resistor \(R_L\) through a two-wire line of length l can only be analyzed with Kirchhoff's voltage law when the line connecting source with load does not possess a spatial voltage variation(as is the case with low frequency circuits).
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
+
 The transition from lumped circuit analysys obeying Kirchhoff's laws to distributed circuit theory involving voltage and current waves depend on the wavelength in comparasion with the average component size.
 
+\vspace{5cm}
 
 \subsection{Types of Transmission Lines}
 \subsubsection{Two-wire lines:}
 It is a system capable of transporting high-frequency eletric energy from one location to the another. However, it is unsuitable for transmitting high-frequency voltage and current waves: they suffer from the drawback that the eletric and magnetic fields emanating from the conductors extend towards infinity and thus influence on the components placed in the vicinity of the line.
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-
+\vspace{5cm}
 Further, due to the fact that the two wires act as an antenna, the radiation loss tends to be very high. Thus, the two-wire line finds only limited applications in the RF domain. However it is widely used in 50-60 Hz power lines and local telephone connections. Even though the frequency is low, the distance can easily exceed over several kilometers, thus making the wire size comparable to the wave length(for example, the wavelength in air for a 60Hz wave is \(\lambda=\frac{c}{f}= \frac{3*10^8}{60}=5000km\)). Here, again, distributed circuit behavior may have to be taken into account. A common solution that helps minimize cross-talk and radiation is the twisted wire pair whereby the conductors are arranged in a helical pattern.\footnote{When current flows through a wire, it generates a magnetic field. If you have two parallel wires, one carries current forward and the other backward, thus, twisted pairs causes the fields to cancel each other out over short distances. Also, cross-talk happens when a signal in one wire induces unwanted signals in another nearby wire, with twisting, any external noise affects both wires almost equally, thus, since the receiver looks at the difference between the two wires(differential signaling), the noise cancels out.}
 
 \subsubsection{Coaxial line}
 It is used for almost all cases of externaly connected RF systems or measurement equipment at frequencies of up to 40GHz. A typical coaxial line consists of an inner cylindrical conductor of radius a, an outer conductor of radius b, and a dieletric medium layered in between. The outer conductor completely encloss the electromagnetic fields, thus minimizing radiation loss and field interference.
 
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-
+\vspace{5cm}
 \subsubsection{Microstrip Lines}
+\vspace{5cm}
+The ground place below the current carrying conductor traces helps prevent excessive field leakage and thus reduces radiation loss. 
+
+\newpage
+One of the disadvantages of single-layers PCBs is that they have rather high radiation loss and are prone to crosstalk(interference) between neighboring conductor traces. The severity of leakage depends on the relative dieletric constants of each substrate.
 
 
+\vspace{5cm}
+Thus, it is seen that, to achieve high density of components, we should use substrates with high values of dieletric constants, since they minimize field leakage and cross coupling.
 
+Another way to reduce radiation loss and interference is to "sandwich" the microstrip between two ground planes, resulting in a triple-layer setup.
+\vspace{5cm}
+It is also common to have the signal lines between a dieletric, thus having the voltage and current waves confined to two plates separated by a dieletric medium.
+\vspace{5cm}
+\section{General Transmission Line Equation}
+\vspace{5cm}
+Adopting phasor notation and using Kirchoff's voltage law:
+\begin{align*}
+  &(R+j\omega L)I(z)\Delta z+V(z+\Delta z)=V(z)\\
+  &\lim_{\Delta z \to 0} \left( -\frac{V(z+\Delta)-V(z)}{\Delta z}\right)= -\frac{dV(z)}{dz}=(R+j\omega L)I(z)\\
+  &-\frac{dV(z)}{dz}=(R+j\omega L)I(z)
+\end{align*}
+Where R and L are the combined resistance and inductance of the two lines.
+
+Kirchhoff's current law to node a:
+\begin{align*}
+  &-I(z)+V(z+\Delta z)(G+j\omega C)\Delta z+I(z+\Delta z)=0\\
+  &\lim_{\Delta z \to \infty} \frac{I(z+\Delta z) - I(z)}{\Delta z}=-V(z+\Delta z)(G+j\omega C)\\
+  &\frac{dI(z)}{dz}=-(G+j\omega C)V(z)\\
+\end{align*}
+
+\begin{align*}
+  &\frac{d}{dz}\left(-\frac{dV(z)}{dz}\right)=\frac{d}{dz}(R+j\omega L)I(z)\\
+  &\frac{d^2V(z)}{dz^2}+\frac{dI(z)}{dz}(R+j\omega L)=0\\
+  &\frac{d^2V(z)}{dz^2}-(G+j\omega C)V(z)(R+j\omega L)=0\\
+  &\frac{d^2V(z)}{dz^2}-V(z)(G+j\omega C)(R+j\omega L)=0 \quad \text{onde} \quad \gamma^2=(G+j\omegaC)(R+j\omega L) \quad \text{ou seja:} \quad \\
+  &\frac{d^2V(z)}{dz^2}-\gamma^2V(z)=0
+\end{align*}
+\(\gamma\) is known as \textbf{complex propagation constant}:
+
+\begin{align*}
+  \gamma=\alpha+j\beta=\sqrt\left((R+j\omega L)(G+j\omega C)\right)
+\end{align*}
+and depends on the type of transmission line.
+Doing the same for the current wave we obtain:
+\begin{align}
+  \frac{d^2I(z)}{dz^2}-\gamma^2I(z)=0
+\end{align}
+
+Solutions to these decoupled equation are two exponential functions. For the voltage:
+\begin{equation}
+    V(z)=V^+ e^{-\gamma z} + V^- e^{+\gamma z}
+  \label{eq:VoltageWaveSolution}
+\end{equation}
+and for the current wave:
+\begin{equation}
+    I(z)=I^+ e^{-\gamma z} + I^- e^{+\gamma z}
+  \label{eq:CurrentWaveSolution}
+\end{equation}
+These ar the general solutions for transmission lines aligned along the z-axis. The first term represents wavefronts propagating in the +z-direction, whereas the second term denotes wave propagation in the -z direction.
+
+\section{Characteristic Impedance}
+Equations \ref{eq:VoltageWaveSolution} and \ref{eq:CurrentWaveSolution} are related. This can be seen if\ref{eq:VoltageWaveSolution} is substituted into the first order derivative voltage equation obtained after taking the limit. Differentiating and rearranging provides us with a current expression in the form:
+\begin{equation}
+  I(z)=\frac{\gamma}{R+j\omega L}(V^+ e^{-\gamma z} - V^- + e^{+\gamma z}).
+  \label{eq:currentShit}
+\end{equation}
+Since voltage and current are generally related via an impedance, we can introduce the so-called \textbf{characteristic line impedance \(Z_0\)}:
+\begin{equation}
+   Z_0=\frac{R+j\omega L}{\omega}=\sqrt\left(\frac{R+j\omega L}{G+j\omega C}\right)
+  \label{eq:CharacteristicImpedanceZ0}
+\end{equation}
+Substituting the current expression \ref{eq:CurrentWaveSolution} in the left hand side of \ref{eq:currentShit}:
+\begin{equation}
+    Z_0=\frac{V^+}{I^+}=-\frac{V^-}{I^-}
+  \label{eq:}
+\end{equation}
+Thus:
+\begin{equation}
+  I(z)=\frac{1}{Z_0}(V^+ e^{-\gamma z}-V^- e^{+\gamma z})
+  \label{eq:}
+\end{equation}
+
+\section{Lossless Transmission Line Model}
+The characteristic line impedance given by \ref{eq:CharacteristicImpedanceZ0} is, in general, a complex quantity and therefore takes into account losses that are always present when dealing with realistic lines.
+
+However, for short lines, as mostly encountered in RF and MW circuits, it does not create an appreciable error to assume lossless line conditions. Thus, \(R=G=0\) and the characteristic impedance simplifies to:
+\begin{equation}
+  Z_0=\sqrt{\frac{L}{C}}
+  \label{eq:}
+\end{equation}
+
+\section{Terminated Lossless Transmission Line}
+High-frequency eletric circuits can be viewed as a collection of finite transmission line sections connected to various discrete active and passive components.
+A simple configuration of a load impedance connected to a finite transmission line segment of length l forces us to investigate how an incident voltage wave propagating along the positive z-axis interacts with the load impedance.
+\vspace{5cm}
+
+The load is assumed to be located at z=0, and the voltage wave is coupled into the line at z=-l. The voltage long the line is generically given by \ref{eq:VoltageWaveSolution}, where the second term has the meaning of a reflection from the load impedance for values z<0. Introducing the voltage \textbf{reflection coefficient} \(\Gamma_0\) as the ratio of reflected to incident voltage wave at the load location z=0:
+\begin{equation}
+  \Gamma_0=\frac{V^-}{V^+}
+  \label{eq:ReflectionCoefficient}
+\end{equation}
+As a consequence, the voltage and current waves can be re-expressed in terms of the reflection coefficient as:
+
+\begin{align}
+  V(z)&=V^+(e^{-\gamma z} + \Gamma_0e^{+ \gamma z})\\
+  I(z)&=\frac{V^+}{Z_0}(e^{- \gamma z}-\Gamma_0e^{+\gamma z})
+\end{align}
+
+If eq. 10 is divide by eq. 50, we find the impedance as a function of space Z(z) anywhere along the z-axis \(-l\leq z \leq 0\). For instance, at z=-l, the impedance is the total input impedance \(Z_{in}\); for location z=0, the total impedance becomes the load impedance:
+
+\begin{equation}
+    Z(0)=Z_L=Z_0 \frac{1+\Gamma_0}{1-\Gamma_0}
+  \label{eq:TotalImpedanceAt0}
+\end{equation}
+
+Solving equation \ref{eq:TotalImpedanceAt0} for \(\Gamma_0\):
+
+\begin{equation}
+  \Gamma_0=\frac{Z_L - Z_0}{Z_L + Z_0}
+  \label{eq:ReflectionCoefficientR0}
+\end{equation}
+
+This representation is more useful because it depends only on known circuit quantities instead of particular voltage wave amplitude ratios. 
+
+\newpage
+Cases:
+\begin{itemize}
+  \item \(Z_L \to \infty\)(open circuit): \(\Gamma_0=1\), which means the reflected wave returns with the same polarity as the incident voltage(Refletiu tudo.);
+  \item \(Z_L=0\)(short circuit): The reflected voltage returns with inverted amplitude, resulting in \(\Gamma_0 = -1\).(interpretação?!);
+  \item \(Z_L=Z_L\): No reflection occurs, thus \(\Gamma_0=0\). There is no reflection, the incident wave was completely absorbed by the load(Sistema casado).
+\end{itemize}
 \end{document}
